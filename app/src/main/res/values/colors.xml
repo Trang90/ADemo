@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="prime_50">#fff3e4</color>
+    <color name="prime_100">#ffe0bc</color>
+    <color name="prime_200">#ffcc92</color>
+    <color name="prime_400">#ffa851</color>
+    <color name="prime_500">#fd9b45</color>
+    <color name="prime_600">#f88f42</color>
+    <color name="prime_700">#f0813e</color>
+    <color name="prime_800">#e7733b</color>
+    <color name="prime_900">#dd5c35</color>
+
+    <color name="secondary_50">#ffebef</color>
+    <color name="secondary_100">#ffced4</color>
+    <color name="secondary_200">#f99b9c</color>
+    <color name="secondary_400">#ff5151</color>
+    <color name="secondary_500">#ff3d34</color>
+    <color name="secondary_600">#f73335</color>
+    <color name="secondary_700">#e4272f</color>
+    <color name="secondary_800">#d71e27</color>
+    <color name="secondary_900">#c80e1a</color>
+
+
+
+    <color name="primaryColor">#ffa851</color>
+    <color name="primaryLightColor">#ffda80</color>
+    <color name="primaryDarkColor">#c87921</color>
+    <color name="secondaryColor">#ff5151</color>
+    <color name="secondaryLightColor">#ff867e</color>
+    <color name="secondaryDarkColor">#c50b28</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#000000</color>
+
+    <color name="colorAccent">#ffa751</color>
+
+</resources>
