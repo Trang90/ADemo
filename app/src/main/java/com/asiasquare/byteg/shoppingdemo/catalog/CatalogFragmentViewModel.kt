@@ -8,7 +8,7 @@ import com.asiasquare.byteg.shoppingdemo.datamodel.Catalog
 class CatalogFragmentViewModel(application: Application) : AndroidViewModel(application){
 
     /**
-     * List of catalog, observe this to get tha change in database
+     * List of catalog, observe this to get the change in database
      */
     private val _catalogList = MutableLiveData<List<Catalog>>()
     val catalogList :LiveData<List<Catalog>>

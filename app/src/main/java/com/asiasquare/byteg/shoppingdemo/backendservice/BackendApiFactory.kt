@@ -1,5 +1,4 @@
 package com.asiasquare.byteg.shoppingdemo.backendservice
-
 import android.content.Context
 import com.asiasquare.byteg.shoppingdemo.Settings
 import com.squareup.moshi.Moshi

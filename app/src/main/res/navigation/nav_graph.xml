@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_catalogFragment_to_itemListFragment"
             app:destination="@id/itemListFragment" />
+        <action
+            android:id="@+id/action_catalogFragment_to_blankFragment"
+            app:destination="@id/blankFragment" />
     </fragment>
     <fragment
         android:id="@+id/itemListFragment"
@@ -33,7 +36,7 @@
         tools:layout="@layout/fragment_detail" >
         <argument
             android:name="selectedItem"
-            app:argType="com.asiasquare.byteg.shoppingdemo.datamodel.ItemList" />
+            app:argType="com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
@@ -45,4 +48,9 @@
         android:name="com.asiasquare.byteg.shoppingdemo.favorite.FavoriteFragment"
         android:label="Favorite"
         tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.asiasquare.byteg.shoppingdemo.testpackage.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" />
 </navigation>

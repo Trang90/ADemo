@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.asiasquare.byteg.shoppingdemo.databinding.GridViewCatalogItemBinding
 import com.asiasquare.byteg.shoppingdemo.datamodel.Catalog
-
 class CatalogFragmentAdapter(private val onClickListener: OnClickListener) : ListAdapter<Catalog,CatalogFragmentAdapter.CatalogViewHolder>(DiffCallback){
 
     /** ViewHolder class **/

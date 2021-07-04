@@ -1,46 +1,61 @@
 package com.asiasquare.byteg.shoppingdemo.itemlist
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.asiasquare.byteg.shoppingdemo.R
+import com.asiasquare.byteg.shoppingdemo.backendservice.ServerApi
+import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
 import com.asiasquare.byteg.shoppingdemo.datamodel.ItemList
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class ItemListFragmentViewModel(application: Application) : AndroidViewModel(application){
+class ItemListFragmentViewModel(application: Application, catalogId: Int) : AndroidViewModel(application){
+
 
     /**
-     * List of catalog, observe this to get tha change in database
+     * List of catalog, observe this to get the change in database
      */
-    private val _itemList = MutableLiveData<List<ItemList>>()
-    val itemList : LiveData<List<ItemList>>
-        get() = _itemList
 
-    private val _navigateToDetail = MutableLiveData<ItemList?>()
-    val navigateToDetail : LiveData<ItemList?>
+    private val _navigateToDetail = MutableLiveData<NetworkItem?>()
+    val navigateToDetail : LiveData<NetworkItem?>
         get() = _navigateToDetail
 
+    private val _text = MutableLiveData<List<NetworkItem>>()
+    val text :LiveData<List<NetworkItem>>
+        get() = _text
+
+
     init {
-        generateDummyList()
+        getData(catalogId)
     }
 
 
-    /**
-     * Create dummy list for testing
-     */
-    private fun generateDummyList(){
-        val itemList = mutableListOf<ItemList>()
 
-        itemList.add(ItemList(0,"Gạo & mì các loại", R.drawable.ct_bungao))
-        itemList.add(ItemList(1,"Thực phẩm đông lạnh", R.drawable.ct_donglanh))
-        itemList.add(ItemList(2,"Gia vị", R.drawable.ct_nuoccham))
-        itemList.add(ItemList(3,"Rau, củ, quả", R.drawable.ct_raucu))
-        itemList.add(ItemList(4,"Đồ khô & ăn vặt", R.drawable.ct_dokho))
-        itemList.add(ItemList(5,"Thực phẩm đóng hộp", R.drawable.ct_dohop))
-
-        _itemList.value= itemList
+    private fun getData(catalogId: Int){
+        viewModelScope.launch {
+            try {
+                withContext(Dispatchers.IO){
+                    val listResult = when(catalogId){
+                        0-> ServerApi.retrofitService.getDataFirst()
+                        1-> ServerApi.retrofitService.getDataSecond()
+                        2-> ServerApi.retrofitService.getDataThird()
+                        3-> ServerApi.retrofitService.getDataFourth()
+                        4-> ServerApi.retrofitService.getDataFifth()
+                        5-> ServerApi.retrofitService.getDataSixth()
+                        else -> ServerApi.retrofitService.getDataSeventh()
+                    }
+                    _text.postValue(listResult)
+                }
+                Log.d("Get data $catalogId","sucess")
+            }catch (e: Exception){
+                e.message?.let { Log.d("Get data $catalogId",it) }
+            }
+        }
     }
 
-
-    fun onDetailClick( itemList: ItemList){
+    fun onDetailClick( itemList: NetworkItem){
         _navigateToDetail.value = itemList
     }
 
@@ -49,11 +64,10 @@ class ItemListFragmentViewModel(application: Application) : AndroidViewModel(app
     }
 
 
-
-    class Factory(private val app: Application) : ViewModelProvider.Factory{
+    class Factory(private val app: Application, private val catalogId: Int) : ViewModelProvider.Factory{
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if(modelClass.isAssignableFrom(ItemListFragmentViewModel::class.java)){
-                return ItemListFragmentViewModel(app) as T
+                return ItemListFragmentViewModel(app,catalogId) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
