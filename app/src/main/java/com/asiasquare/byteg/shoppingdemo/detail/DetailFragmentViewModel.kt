@@ -15,6 +15,7 @@ class DetailFragmentViewModel(item:NetworkItem, application: Application) : Andr
     private val database = AsiaDatabase.getInstance(application)
     private val favoriteItemRepository = FavoriteRepository(database)
 
+    //convert NetworkItem to FavoriteItem
     private val _selectedItem = item.asDomainItem()
 
     private val _isFavorite =MutableLiveData<Boolean>(true)
@@ -24,7 +25,7 @@ class DetailFragmentViewModel(item:NetworkItem, application: Application) : Andr
     fun onAddFavoriteClicking() {
         viewModelScope.launch {
             if(favoriteItemRepository.getFavoriteItemById(_selectedItem.itemId)!= null){
-                Log.d("Detail viewmodel","Item da co trong favorite")
+                Log.d("Detail viewmodel","Item is added into Favorite")
 
                 favoriteItemRepository.deleteFavoriteItem(_selectedItem.asFavoriteItem())
                 checkFavorite()
