@@ -1,45 +1,61 @@
 package com.asiasquare.byteg.shoppingdemo.detail
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.asiasquare.byteg.shoppingdemo.R
+import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
 import com.asiasquare.byteg.shoppingdemo.datamodel.ItemList
+import com.asiasquare.byteg.shoppingdemo.repository.FavoriteRepository
+import kotlinx.coroutines.launch
 
-class DetailFragmentViewModel(itemList: NetworkItem, application: Application) : AndroidViewModel(application){
+class DetailFragmentViewModel(item:NetworkItem, application: Application) : AndroidViewModel(application){
 
-    /**
-     * List of catalog, observe this to get tha change in database
-     */
-    private val _selectedItem = MutableLiveData<NetworkItem>()
-    val selectedItem : LiveData<NetworkItem>
-        get() = _selectedItem
+    private val database = AsiaDatabase.getInstance(application)
+    private val favoriteItemRepository = FavoriteRepository(database)
 
-    private val _navigateToPayment = MutableLiveData<NetworkItem?>()
-    val navigateToPayment : LiveData<NetworkItem?>
-        get() = _navigateToPayment
+    private val _selectedItem = item.asDomainItem()
 
-    init {
-        _selectedItem.value = itemList
+    private val _isFavorite =MutableLiveData<Boolean>(true)
+    val isFavorite : LiveData<Boolean>
+        get() = _isFavorite
+
+    fun onAddFavoriteClicking() {
+        viewModelScope.launch {
+            if(favoriteItemRepository.getFavoriteItemById(_selectedItem.itemId)!= null){
+                Log.d("Detail viewmodel","Item da co trong favorite")
+
+                favoriteItemRepository.deleteFavoriteItem(_selectedItem.asFavoriteItem())
+                checkFavorite()
+
+            }else
+            {
+                favoriteItemRepository.addFavoriteItem(_selectedItem.asFavoriteItem())
+
+                checkFavorite()
+            }
+
+        }
+    }
+
+    fun checkFavorite() {
+        viewModelScope.launch {
+            _isFavorite.value =
+                favoriteItemRepository.getFavoriteItemById(_selectedItem.itemId) !== null
+
+        }
     }
 
 
-
-    fun onPaymentClick( item: NetworkItem){
-        _navigateToPayment.value = item
-    }
-
-    fun onNavigationComplete(){
-        _navigateToPayment.value = null
-    }
 
 
     class Factory(
-        private val itemProperty: NetworkItem,
+        private val item: NetworkItem,
         private val app: Application) : ViewModelProvider.Factory{
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if(modelClass.isAssignableFrom(DetailFragmentViewModel::class.java)){
-                return DetailFragmentViewModel(itemProperty, app) as T
+                return DetailFragmentViewModel( item, app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

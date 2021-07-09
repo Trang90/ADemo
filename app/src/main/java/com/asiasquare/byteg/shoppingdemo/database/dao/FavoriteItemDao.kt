@@ -11,7 +11,10 @@ interface FavoriteItemDao {
     @Insert
     fun insert(item : FavoriteItem)
 
-    @Update
+    @Delete
+    fun delete(item : FavoriteItem)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(item : FavoriteItem)
 
     @Delete
@@ -22,5 +25,11 @@ interface FavoriteItemDao {
 
     @Query(value = "SELECT * FROM favorite_table")
     fun getAllItemsInFavoriteList() : LiveData<List<FavoriteItem>>
+
+    @Query(value = "SELECT * from favorite_table WHERE itemId = :id")
+    fun get(id : Int) : FavoriteItem?
+
+    @Query("SELECT * FROM favorite_table ORDER BY itemId DESC LIMIT 1")
+    fun getItem(): FavoriteItem?
 
 }

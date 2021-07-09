@@ -31,4 +31,17 @@ data class Item(
             itemOrigin = itemOrigin
         )
     }
+    fun asFavoriteItem() : FavoriteItem{
+        return FavoriteItem(
+            itemId = itemId,
+            itemName = itemName,
+            itemPrice = itemPrice,
+            itemDiscountedPrice = itemDiscountedPrice,
+            itemImageSource = itemImageSource,
+            itemWeight = itemWeight,
+            itemDescription = itemDescription,
+            itemBrand = itemBrand,
+            itemOrigin = itemOrigin
+        )
+    }
 }
