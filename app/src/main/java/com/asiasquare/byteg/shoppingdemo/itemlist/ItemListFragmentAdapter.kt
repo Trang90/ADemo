@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.CircleCropTransformation
+import com.asiasquare.byteg.shoppingdemo.R
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
 import com.asiasquare.byteg.shoppingdemo.databinding.GridViewItemListBinding
 import com.asiasquare.byteg.shoppingdemo.datamodel.ItemList
@@ -20,9 +22,14 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
 
         fun bind(item: NetworkItem) {
             binding.apply {
-                binding.anhsanpham.load(item.itemImageSource)
+                binding.anhsanpham.load(item.itemImageSource){
+                    placeholder(R.drawable.loading_animation)
+                    error(R.drawable.ic_connection_error)
+                    //transformations(CircleCropTransformation())
+                }
                 tensanpham.text = item.itemName
                 giasanpham.text= item.itemPrice.toString()
+
             }
         }
         companion object{

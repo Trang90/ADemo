@@ -2,6 +2,8 @@ package com.asiasquare.byteg.shoppingdemo.itemlist
 
 import android.app.Application
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
 import androidx.lifecycle.*
 import com.asiasquare.byteg.shoppingdemo.R
 import com.asiasquare.byteg.shoppingdemo.backendservice.ServerApi
@@ -10,6 +12,8 @@ import com.asiasquare.byteg.shoppingdemo.datamodel.ItemList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
+enum class ListStatus { LOADING, ERROR, DONE }
 
 class ItemListFragmentViewModel(application: Application, catalogId: Int) : AndroidViewModel(application){
 
@@ -26,6 +30,9 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
     val text :LiveData<List<NetworkItem>>
         get() = _text
 
+    private val _status = MutableLiveData<ListStatus>()
+    val status: LiveData<ListStatus>
+        get() = _status
 
     init {
         getData(catalogId)
@@ -36,7 +43,9 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
     private fun getData(catalogId: Int){
         viewModelScope.launch {
             try {
+
                 withContext(Dispatchers.IO){
+                    _status.postValue (ListStatus.LOADING)
                     val listResult = when(catalogId){
                         0-> ServerApi.retrofitService.getDataFirst()
                         1-> ServerApi.retrofitService.getDataSecond()
@@ -46,14 +55,35 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
                         5-> ServerApi.retrofitService.getDataSixth()
                         else -> ServerApi.retrofitService.getDataSeventh()
                     }
+
+                    _status.postValue (ListStatus.DONE)
                     _text.postValue(listResult)
                 }
+
                 Log.d("Get data $catalogId","sucess")
             }catch (e: Exception){
+                _status.postValue (ListStatus.ERROR)
+
                 e.message?.let { Log.d("Get data $catalogId",it) }
             }
         }
     }
+
+//    fun bindStatus(statusImageView: ImageView, status: ListStatus?) {
+//        when (status) {
+//            ListStatus.LOADING -> {
+//                statusImageView.visibility = View.VISIBLE
+//                statusImageView.setImageResource(R.drawable.loading_animation)
+//            }
+//            ListStatus.ERROR -> {
+//                statusImageView.visibility = View.VISIBLE
+//                statusImageView.setImageResource(R.drawable.ic_connection_error)
+//            }
+//            ListStatus.DONE -> {
+//                statusImageView.visibility = View.GONE
+//            }
+//        }
+//    }
 
     fun onDetailClick( itemList: NetworkItem){
         _navigateToDetail.value = itemList
