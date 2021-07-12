@@ -66,7 +66,7 @@ class DetailFragment : Fragment(){
 
         binding.ivFavorite.setOnClickListener {
             //Toast.makeText(context, "Favorite item is added", Toast.LENGTH_SHORT).show()
-            viewModel.onAddFavoriteClicking()
+            viewModel.onFavoriteClicking()
         }
 
     }

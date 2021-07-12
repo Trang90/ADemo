@@ -6,7 +6,6 @@ import androidx.lifecycle.*
 import com.asiasquare.byteg.shoppingdemo.backendservice.ServerApi
 import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
-import com.asiasquare.byteg.shoppingdemo.repository.ItemListRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest

@@ -1,5 +1,6 @@
 package com.asiasquare.byteg.shoppingdemo.favorite
 
+import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -50,8 +52,12 @@ class FavoriteFragment : Fragment(), FavoriteFragmentAdapter.OnClickListener {
 
 
 
-        viewModel.favoriteList.observe(viewLifecycleOwner, Observer{
+        viewModel.favoriteList.observe(viewLifecycleOwner, Observer {
             it?.let {
+                if (it.isEmpty()) {
+                    binding.emptyView.visibility = View.VISIBLE
+                } else
+                    binding.emptyView.visibility = View.GONE
                 adapter.submitList(it)
             }
         })
@@ -96,12 +102,33 @@ class FavoriteFragment : Fragment(), FavoriteFragmentAdapter.OnClickListener {
         _binding = null
     }
     override fun onItemClick(favorite: FavoriteItem) {
-        TODO("Toan bo item")
+        TODO("whole view_item")
     }
 
     override fun onDeleteClick(favorite: FavoriteItem) {
-        //TODO("Nut xoa o day")
-        viewModel.onDeleteFavoriteClicking(favorite)
+        //TODO("delete button")
+        val dialogBuilder = AlertDialog.Builder(requireActivity())
+
+        // set message of alert dialog
+        dialogBuilder.setMessage("Do you want to delete this item ?")
+            // if the dialog is cancelable
+            .setCancelable(false)
+            // positive button text and action
+            .setPositiveButton("Proceed", DialogInterface.OnClickListener {
+                    dialog, id -> viewModel.onDeleteFavoriteClicking(favorite)
+            })
+            // negative button text and action
+            .setNegativeButton("Cancel", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+
+        // create dialog box
+        val alert = dialogBuilder.create()
+        // set title for alert dialog box
+        alert.setTitle("AlertDialogExample")
+        // show alert dialog
+        alert.show()
+
     }
 
 }
