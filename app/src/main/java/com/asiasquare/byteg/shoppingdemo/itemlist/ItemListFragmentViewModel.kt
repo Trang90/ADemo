@@ -2,22 +2,25 @@ package com.asiasquare.byteg.shoppingdemo.itemlist
 
 import android.app.Application
 import android.util.Log
-import android.view.View
-import android.widget.ImageView
 import androidx.lifecycle.*
-import com.asiasquare.byteg.shoppingdemo.R
 import com.asiasquare.byteg.shoppingdemo.backendservice.ServerApi
+import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
-import com.asiasquare.byteg.shoppingdemo.datamodel.ItemList
+import com.asiasquare.byteg.shoppingdemo.repository.ItemListRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 enum class ListStatus { LOADING, ERROR, DONE }
-
 class ItemListFragmentViewModel(application: Application, catalogId: Int) : AndroidViewModel(application){
+//class ItemListFragmentViewModel(item:NetworkItem, application: Application, catalogId: Int) : AndroidViewModel(application){
 
-
+//    private val database = AsiaDatabase.getInstance(application)
+//    private val itemRepository = ItemListRepository(database)
+//
+//    private val _localItem = item.asLocalItem()
     /**
      * List of catalog, observe this to get the change in database
      */
@@ -33,6 +36,20 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
     private val _status = MutableLiveData<ListStatus>()
     val status: LiveData<ListStatus>
         get() = _status
+
+
+
+    //search function
+    //private val database = AsiaDatabase.getInstance(application)
+
+//    val searchQuery = MutableStateFlow("")
+//
+//    private val tasksFlow = searchQuery.flatMapLatest {
+//        database.itemDao.getTasks(it)
+//    }
+//
+//    val tasks = tasksFlow.asLiveData()
+
 
     init {
         getData(catalogId)
@@ -69,21 +86,6 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
         }
     }
 
-//    fun bindStatus(statusImageView: ImageView, status: ListStatus?) {
-//        when (status) {
-//            ListStatus.LOADING -> {
-//                statusImageView.visibility = View.VISIBLE
-//                statusImageView.setImageResource(R.drawable.loading_animation)
-//            }
-//            ListStatus.ERROR -> {
-//                statusImageView.visibility = View.VISIBLE
-//                statusImageView.setImageResource(R.drawable.ic_connection_error)
-//            }
-//            ListStatus.DONE -> {
-//                statusImageView.visibility = View.GONE
-//            }
-//        }
-//    }
 
     fun onDetailClick( itemList: NetworkItem){
         _navigateToDetail.value = itemList

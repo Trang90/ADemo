@@ -2,31 +2,34 @@ package com.asiasquare.byteg.shoppingdemo.itemlist
 
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.asiasquare.byteg.shoppingdemo.R
 import com.asiasquare.byteg.shoppingdemo.databinding.FragmentItemListBinding
 import com.asiasquare.byteg.shoppingdemo.itemlist.ListStatus.*
+import com.asiasquare.byteg.shoppingdemo.util.onQueryTextChanged
+import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
 
 class ItemListFragment : Fragment() {
 
     private val args: ItemListFragmentArgs by navArgs()
-    private var itemList by Delegates.notNull<Int>()
-
+    private var itemListCatalogId by Delegates.notNull<Int>()
 
     private var _binding : FragmentItemListBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var viewModel: ItemListFragmentViewModel
 
+    //search function
+    private lateinit var searchView: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,13 +38,16 @@ class ItemListFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentItemListBinding.inflate(inflater,container,false)
 
-        //toast with id
-        itemList = args.catalogId
+
+        itemListCatalogId = args.catalogId
+
+//        val activity = requireNotNull(this.activity)
+//        viewModel = ViewModelProvider(this, ItemListFragmentViewModel.Factory(activity.application,itemList))
+//            .get(ItemListFragmentViewModel::class.java)
 
         val activity = requireNotNull(this.activity)
-        viewModel = ViewModelProvider(this, ItemListFragmentViewModel.Factory(activity.application,itemList))
+        viewModel = ViewModelProvider(this, ItemListFragmentViewModel.Factory(activity.application,itemListCatalogId))
             .get(ItemListFragmentViewModel::class.java)
-
 
         /** Create recyclerView adapter and define OnClickListener **/
         val adapter = ItemListFragmentAdapter(ItemListFragmentAdapter.OnClickListener{
@@ -69,6 +75,7 @@ class ItemListFragment : Fragment() {
                 }
             }
         })
+
         /** Update data to adapter **/
         viewModel.text.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -89,8 +96,46 @@ class ItemListFragment : Fragment() {
                 viewModel.onNavigationComplete()
             }
         })
+
+        //search function
+        setHasOptionsMenu(true)
+
         return binding.root
     }
+
+    //search function
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.menu_fragment, menu)
+//
+//        val searchItem = menu.findItem(R.id.action_search)
+//        searchView = searchItem.actionView as SearchView
+//
+//        val pendingQuery = viewModel.searchQuery.value
+//        if (pendingQuery != null && pendingQuery.isNotEmpty()) {
+//            searchItem.expandActionView()
+//            searchView.setQuery(pendingQuery, false)
+//        }
+//
+//        searchView.onQueryTextChanged {
+//            viewModel.searchQuery.value = it
+//        }
+//
+//    }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when (item.itemId) {
+//            R.id.action_sort_by_name -> {
+//                //viewModel.onSortOrderSelected(SortOrder.BY_NAME)
+//                true
+//            }
+//            R.id.action_sort_by_date_created -> {
+//                //viewModel.onSortOrderSelected(SortOrder.BY_DATE)
+//                true
+//            }
+//
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//    }
 
     /**Remove _binding when fragment is destroy**/
     override fun onDestroyView() {

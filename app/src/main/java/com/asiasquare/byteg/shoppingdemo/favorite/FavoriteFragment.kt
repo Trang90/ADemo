@@ -11,13 +11,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
 import com.asiasquare.byteg.shoppingdemo.databinding.FragmentFavoriteBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collect
 
 
-class FavoriteFragment : Fragment() {
-
+//class FavoriteFragment : Fragment() {
+class FavoriteFragment : Fragment(), FavoriteFragmentAdapter.OnClickListener {
     private var _binding: FragmentFavoriteBinding?=null
     private val binding get()=_binding!!
 
@@ -38,10 +39,13 @@ class FavoriteFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentFavoriteBinding.inflate(inflater, container,false)
 
-        /** Create recyclerView adapter and define OnClickListener **/
-        val adapter = FavoriteFragmentAdapter(FavoriteFragmentAdapter.OnClickListener{
-            Toast.makeText(context, "${it.itemId} - ${it.itemName}", Toast.LENGTH_SHORT).show()
-        })
+//        /** Create recyclerView adapter and define OnClickListener **/
+//        val adapter = FavoriteFragmentAdapter(FavoriteFragmentAdapter.OnClickListener{
+//            Toast.makeText(context, "${it.itemId} - ${it.itemName}", Toast.LENGTH_SHORT).show()
+//        })
+
+        val adapter = FavoriteFragmentAdapter(this)
+
         binding.recyclerViewYeuThich.adapter=adapter
 
 
@@ -91,5 +95,14 @@ class FavoriteFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+    override fun onItemClick(favorite: FavoriteItem) {
+        TODO("Toan bo item")
+    }
+
+    override fun onDeleteClick(favorite: FavoriteItem) {
+        //TODO("Nut xoa o day")
+        viewModel.onDeleteFavoriteClicking(favorite)
+    }
 
 }
+
