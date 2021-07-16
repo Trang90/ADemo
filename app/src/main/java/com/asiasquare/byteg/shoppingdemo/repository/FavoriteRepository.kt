@@ -10,6 +10,7 @@ import kotlinx.coroutines.withContext
 class FavoriteRepository(private val database: AsiaDatabase){
 
     val favoriteItems: LiveData<List<FavoriteItem>> = database.favoriteItemDao.getAllItemsInFavoriteList()
+    val favoriteLiveItemCount: LiveData<Int> = database.favoriteItemDao.getLiveItemsCount()
 
     suspend fun addFavoriteItem(item: FavoriteItem){
         withContext(Dispatchers.IO){
@@ -25,6 +26,8 @@ class FavoriteRepository(private val database: AsiaDatabase){
         }
     }
 
+
+
     suspend fun getFavoriteItemById(id: Int) : FavoriteItem? {
         var item : FavoriteItem? = null
         withContext(Dispatchers.IO){
@@ -32,5 +35,14 @@ class FavoriteRepository(private val database: AsiaDatabase){
         }
         return item
     }
+
+//    suspend fun getFavoriteItemCount() : Int{
+//        var count =0
+//        withContext(Dispatchers.IO){
+//            count = database.favoriteItemDao.getFavoriteItemsCount()
+//        }
+//        return count
+//    }
+
 
 }

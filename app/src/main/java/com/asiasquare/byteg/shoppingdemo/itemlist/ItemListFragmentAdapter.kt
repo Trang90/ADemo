@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.asiasquare.byteg.shoppingdemo.R
+import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
 import com.asiasquare.byteg.shoppingdemo.databinding.GridViewItemListBinding
 import com.asiasquare.byteg.shoppingdemo.datamodel.ItemList
@@ -20,6 +21,8 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
     class ItemListViewHolder (private val binding: GridViewItemListBinding):
         RecyclerView.ViewHolder(binding.root)  {
 
+        val btnFavorite= binding.imageViewTim
+        @SuppressLint("SetTextI18n")
         fun bind(item: NetworkItem) {
             binding.apply {
                 binding.anhsanpham.load(item.itemImageSource){
@@ -28,7 +31,7 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
                     //transformations(CircleCropTransformation())
                 }
                 tensanpham.text = item.itemName
-                giasanpham.text= item.itemPrice.toString()
+                giasanpham.text= "€"+ item.itemPrice.toString()
 
             }
         }
@@ -48,10 +51,14 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
     }
 
     override fun onBindViewHolder(holder: ItemListViewHolder,position: Int) {
-        val itemList = getItem(position)
-        holder.bind(itemList)
+        val item = getItem(position)
+        holder.bind(item)
         holder.itemView.setOnClickListener {
-            onClickListener.clickListener(itemList)
+            onClickListener.onItemClick(item)
+        }
+
+        holder.btnFavorite.setOnClickListener {
+            onClickListener.onAddFavoriteClick(item)
         }
     }
 
@@ -68,8 +75,10 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
     }
 
     /** Simple ClickListener. Return itemList Object info when user click **/
-    class OnClickListener(val clickListener : (itemList : NetworkItem) -> Unit){
-        fun onClick(itemList : NetworkItem) = clickListener(itemList)
+
+    interface OnClickListener{
+        fun onItemClick(item: NetworkItem)
+        fun onAddFavoriteClick(favorite: NetworkItem)
     }
 
 }

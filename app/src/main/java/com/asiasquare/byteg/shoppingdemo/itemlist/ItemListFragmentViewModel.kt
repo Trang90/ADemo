@@ -6,8 +6,8 @@ import androidx.lifecycle.*
 import com.asiasquare.byteg.shoppingdemo.backendservice.ServerApi
 import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
+import com.asiasquare.byteg.shoppingdemo.repository.FavoriteRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -16,10 +16,17 @@ enum class ListStatus { LOADING, ERROR, DONE }
 class ItemListFragmentViewModel(application: Application, catalogId: Int) : AndroidViewModel(application){
 //class ItemListFragmentViewModel(item:NetworkItem, application: Application, catalogId: Int) : AndroidViewModel(application){
 
-//    private val database = AsiaDatabase.getInstance(application)
-//    private val itemRepository = ItemListRepository(database)
+    private val database = AsiaDatabase.getInstance(application)
+    private val favoriteItemRepository = FavoriteRepository(database)
+
+
+
+
+    //private val itemRepository = ItemListRepository(database)
 //
 //    private val _localItem = item.asLocalItem()
+
+
     /**
      * List of catalog, observe this to get the change in database
      */
@@ -36,7 +43,9 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
     val status: LiveData<ListStatus>
         get() = _status
 
-
+    private val _isFavorite =MutableLiveData<Boolean>()
+    val isFavorite : LiveData<Boolean>
+        get() = _isFavorite
 
     //search function
     //private val database = AsiaDatabase.getInstance(application)
@@ -52,6 +61,7 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
 
     init {
         getData(catalogId)
+
     }
 
 
@@ -86,7 +96,41 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
     }
 
 
-    fun onDetailClick( itemList: NetworkItem){
+
+
+
+
+//    fun onFavoriteClicking() {
+//        viewModelScope.launch {
+//            //if(favoriteItemRepository.getFavoriteItemById(_selectedItem.itemId)!= null){
+//            if(isFavorite.value == true){
+//                Log.d("Detail viewmodel","Item is added into Favorite")
+//
+//                favoriteItemRepository.deleteFavoriteItem(_selectedItem.asFavoriteItem())
+//                //checkFavorite() không cần thiết
+//                _isFavorite.value = false
+//
+//            }else
+//            {
+//                favoriteItemRepository.addFavoriteItem(_selectedItem.asFavoriteItem())
+//
+//                //checkFavorite()
+//                _isFavorite.value = true
+//            }
+//
+//        }
+//    }
+
+//    fun checkFavorite() {
+//        viewModelScope.launch {
+//            _isFavorite.value =
+//                favoriteItemRepository.getFavoriteItemById(_selectedItem.itemId) !== null
+//
+//        }
+//    }
+
+
+    fun onDetailClick( itemList: NetworkItem) {
         _navigateToDetail.value = itemList
     }
 
@@ -95,7 +139,9 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
     }
 
 
-    class Factory(private val app: Application, private val catalogId: Int) : ViewModelProvider.Factory{
+    class Factory(
+
+        private val app: Application, private val catalogId: Int) : ViewModelProvider.Factory{
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if(modelClass.isAssignableFrom(ItemListFragmentViewModel::class.java)){
                 return ItemListFragmentViewModel(app,catalogId) as T

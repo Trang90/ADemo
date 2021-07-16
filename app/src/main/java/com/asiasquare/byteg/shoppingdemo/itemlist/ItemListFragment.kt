@@ -4,21 +4,19 @@ package com.asiasquare.byteg.shoppingdemo.itemlist
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.asiasquare.byteg.shoppingdemo.R
+import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
 import com.asiasquare.byteg.shoppingdemo.databinding.FragmentItemListBinding
 import com.asiasquare.byteg.shoppingdemo.itemlist.ListStatus.*
-import com.asiasquare.byteg.shoppingdemo.util.onQueryTextChanged
-import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
+import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem as NetworkItem
 
-class ItemListFragment : Fragment() {
+class ItemListFragment : Fragment(), ItemListFragmentAdapter.OnClickListener {
 
     private val args: ItemListFragmentArgs by navArgs()
     private var itemListCatalogId by Delegates.notNull<Int>()
@@ -27,6 +25,7 @@ class ItemListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: ItemListFragmentViewModel
+
 
     //search function
     private lateinit var searchView: SearchView
@@ -50,9 +49,12 @@ class ItemListFragment : Fragment() {
             .get(ItemListFragmentViewModel::class.java)
 
         /** Create recyclerView adapter and define OnClickListener **/
-        val adapter = ItemListFragmentAdapter(ItemListFragmentAdapter.OnClickListener{
-            viewModel.onDetailClick(it)
-        })
+//        val adapter = ItemListFragmentAdapter(ItemListFragmentAdapter.OnClickListener{
+//            viewModel.onDetailClick(it)
+//        })
+
+        val adapter = ItemListFragmentAdapter(this)
+
 
         binding.recyclerViewCatalog.adapter = adapter
 
@@ -84,7 +86,7 @@ class ItemListFragment : Fragment() {
         })
 
 
-        Toast.makeText(context, "Catalog ID: ${args.catalogId}", Toast.LENGTH_LONG).show()
+        //Toast.makeText(context, "Catalog ID: ${args.catalogId}", Toast.LENGTH_LONG).show()
 
 
         /** Navigate to detail by Id **/
@@ -96,6 +98,9 @@ class ItemListFragment : Fragment() {
                 viewModel.onNavigationComplete()
             }
         })
+
+
+
 
         //search function
         setHasOptionsMenu(true)
@@ -141,6 +146,16 @@ class ItemListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClick(item: NetworkItem) {
+        //TODO("Not yet implemented")
+        viewModel.onDetailClick(item)
+    }
+
+    override fun onAddFavoriteClick(favorite: NetworkItem) {
+        //TODO("Not yet implemented")
+
     }
 
 

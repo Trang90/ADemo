@@ -3,11 +3,11 @@ package com.asiasquare.byteg.shoppingdemo.favorite
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.asiasquare.byteg.shoppingdemo.R
 import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
 import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
-import com.asiasquare.byteg.shoppingdemo.datamodel.ItemList
+import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
 import com.asiasquare.byteg.shoppingdemo.repository.FavoriteRepository
+import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -20,13 +20,20 @@ FavoriteFragmentViewModel (application: Application) : AndroidViewModel(applicat
 
     val favoriteList = favoriteItemRepository.favoriteItems
 
+
+
+    val items  = favoriteList.value!!.size
+
+
+
+
     private val tasksEventChannel = Channel<TasksEvent>()
     val tasksEvent = tasksEventChannel.receiveAsFlow()
 
     fun onDeleteFavoriteClicking(favorite : FavoriteItem) {
         viewModelScope.launch {
             if(favoriteItemRepository.getFavoriteItemById(favorite.itemId)!= null){
-                Log.d("Favorite viewmodel","Item da duoc xoa")
+                Log.d("Favorite viewmodel","Item is deleted")
 
                 favoriteItemRepository.deleteFavoriteItem(favorite)
 
@@ -64,3 +71,6 @@ FavoriteFragmentViewModel (application: Application) : AndroidViewModel(applicat
 
     }
 }
+
+
+

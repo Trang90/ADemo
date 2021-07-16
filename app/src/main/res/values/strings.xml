@@ -5,7 +5,8 @@
     <string name="cart">Cart</string>
     <string name="search">Search</string>
 
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Title text for the empty view, which describes the empty dog house image [CHAR LIMIT=50] -->
     <string name="empty_view_title_shopping_cart">Your shopping cart is empty... </string>
     <string name="empty_view_tilte_favorite">Favorites list is empty.. .</string>

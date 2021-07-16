@@ -74,7 +74,7 @@ class FavoriteFragment : Fragment(), FavoriteFragmentAdapter.OnClickListener {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val task = adapter.currentList[viewHolder.adapterPosition]
+                val task = adapter.currentList[viewHolder.absoluteAdapterPosition]
                 viewModel.onTaskSwiped(task)
             }
         }).attachToRecyclerView(binding.recyclerViewYeuThich)
