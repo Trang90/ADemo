@@ -15,8 +15,6 @@ import com.asiasquare.byteg.shoppingdemo.datamodel.ItemList
 
 class FavoriteFragmentAdapter (private val onClickListener: OnClickListener): ListAdapter<FavoriteItem, FavoriteFragmentAdapter.FavoriteViewHolder>(DiffCallback) {
 
-    //private lateinit var favoriteItems: MutableList<FavoriteItem>
-
 
     /** ViewHolder class **/
     class FavoriteViewHolder(val binding: GridViewFavoriteItemBinding):RecyclerView.ViewHolder(binding.root) {

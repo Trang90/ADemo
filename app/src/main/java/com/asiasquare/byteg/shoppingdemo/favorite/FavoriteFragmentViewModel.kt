@@ -20,13 +20,6 @@ FavoriteFragmentViewModel (application: Application) : AndroidViewModel(applicat
 
     val favoriteList = favoriteItemRepository.favoriteItems
 
-
-
-    val items  = favoriteList.value!!.size
-
-
-
-
     private val tasksEventChannel = Channel<TasksEvent>()
     val tasksEvent = tasksEventChannel.receiveAsFlow()
 
