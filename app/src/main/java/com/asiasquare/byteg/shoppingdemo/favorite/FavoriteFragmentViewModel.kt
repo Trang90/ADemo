@@ -15,6 +15,10 @@ import kotlinx.coroutines.launch
 class
 FavoriteFragmentViewModel (application: Application) : AndroidViewModel(application) {
 
+    private val _navigateToDetail = MutableLiveData<NetworkItem?>()
+    val navigateToDetail : MutableLiveData<NetworkItem?>
+        get() = _navigateToDetail
+
     private val database = AsiaDatabase.getInstance(application)
     private val favoriteItemRepository = FavoriteRepository(database)
 
@@ -48,6 +52,14 @@ FavoriteFragmentViewModel (application: Application) : AndroidViewModel(applicat
 
         data class ShowUndoDeleteTaskMessage(val task: FavoriteItem) : TasksEvent()
 
+    }
+
+    fun onDetailClick( item: FavoriteItem){
+        _navigateToDetail.value = item.asDomainItem().asNetworkItem()
+    }
+
+    fun onNavigationComplete(){
+        _navigateToDetail.value = null
     }
 
     /**

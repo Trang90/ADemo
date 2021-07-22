@@ -27,8 +27,6 @@ class ItemListFragment : Fragment(), ItemListFragmentAdapter.OnClickListener {
     private lateinit var viewModel: ItemListFragmentViewModel
 
 
-    //search function
-    private lateinit var searchView: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -149,7 +147,6 @@ class ItemListFragment : Fragment(), ItemListFragmentAdapter.OnClickListener {
     }
 
     override fun onItemClick(item: NetworkItem) {
-        //TODO("Not yet implemented")
         viewModel.onDetailClick(item)
     }
 

@@ -42,6 +42,7 @@ data class NetworkItem(
     fun asDomainItem() : Item {
         return Item(
             itemId = itemId,
+            itemBrandId = itemBrandId,
             itemName = itemName,
             itemPrice = itemPrice,
             itemDiscountedPrice = 0.00,

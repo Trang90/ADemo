@@ -11,15 +11,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
 import com.asiasquare.byteg.shoppingdemo.databinding.FragmentFavoriteBinding
+import com.asiasquare.byteg.shoppingdemo.itemlist.ItemListFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collect
 
 
-//class FavoriteFragment : Fragment() {
+
 class FavoriteFragment : Fragment(), FavoriteFragmentAdapter.OnClickListener {
     private var _binding: FragmentFavoriteBinding?=null
     private val binding get()=_binding!!
@@ -59,6 +61,16 @@ class FavoriteFragment : Fragment(), FavoriteFragmentAdapter.OnClickListener {
                 } else
                     binding.emptyView.visibility = View.GONE
                 adapter.submitList(it)
+            }
+        })
+
+        /** Navigate to detail by Id **/
+        viewModel.navigateToDetail.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                this.findNavController().navigate(
+                    FavoriteFragmentDirections.actionFavoriteFragmentToDetailFragment(it)
+                )
+                viewModel.onNavigationComplete()
             }
         })
 
@@ -102,7 +114,7 @@ class FavoriteFragment : Fragment(), FavoriteFragmentAdapter.OnClickListener {
         _binding = null
     }
     override fun onItemClick(favorite: FavoriteItem) {
-        TODO("whole view_item")
+        viewModel.onDetailClick(favorite)
     }
 
     override fun onDeleteClick(favorite: FavoriteItem) {
