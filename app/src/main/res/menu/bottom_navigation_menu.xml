@@ -21,5 +21,6 @@
         android:title="@string/search"
         android:icon="@drawable/ic_outline_search_24"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView"
         />
 </menu>

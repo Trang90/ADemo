@@ -21,19 +21,21 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
     class ItemListViewHolder (private val binding: GridViewItemListBinding):
         RecyclerView.ViewHolder(binding.root)  {
 
-        val btnFavorite= binding.imageViewTim
+        val btnFavorite= binding.imageViewAddFavorite
         @SuppressLint("SetTextI18n")
         fun bind(item: NetworkItem) {
             binding.apply {
-                binding.anhsanpham.load(item.itemImageSource){
+                anhsanpham.load(item.itemImageSource){
                     placeholder(R.drawable.loading_animation)
                     error(R.drawable.ic_connection_error)
-                    //transformations(CircleCropTransformation())
                 }
                 tensanpham.text = item.itemName
-                giasanpham.text= "€"+ item.itemPrice.toString()
+                giasanpham.text= "€" + item.itemPrice.toString()
+
 
             }
+
+
         }
         companion object{
             fun from(parent: ViewGroup): ItemListViewHolder{
@@ -59,6 +61,7 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
 
         holder.btnFavorite.setOnClickListener {
             onClickListener.onAddFavoriteClick(item)
+
         }
     }
 
@@ -76,11 +79,9 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
 
     /** Simple ClickListener. Return itemList Object info when user click **/
 
-    interface OnClickListener{
+    interface OnClickListener {
         fun onItemClick(item: NetworkItem)
-        fun onAddFavoriteClick(favorite: NetworkItem)
+        fun onAddFavoriteClick(item: NetworkItem)
+
     }
-
 }
-
-

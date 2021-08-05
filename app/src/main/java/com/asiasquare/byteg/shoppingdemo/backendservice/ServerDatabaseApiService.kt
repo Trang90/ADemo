@@ -1,11 +1,14 @@
 package com.asiasquare.byteg.shoppingdemo.backendservice
 
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
+import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItemContainer
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 private const val BASE_URL = "http://www.germanyshoppingsquare.com/"

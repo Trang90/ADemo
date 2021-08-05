@@ -2,29 +2,28 @@ package com.asiasquare.byteg.shoppingdemo.database.items
 
 import android.os.Parcelable
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
 
 /**Domain Model for Item**/
 @Parcelize
 data class NetworkItem(
     @Json(name = "id")
-    val itemId : Int,
-    @Json(name = "idHang")
-    val itemBrandId: Int,
+    val itemId: Int,
     @Json(name = "tenSanPham")
     val itemName: String,
     @Json(name = "giaSanPham")
-    val itemPrice : Double,
+    val itemPrice: Double,
     @Json(name = "hinhAnhSanPham")
-    val itemImageSource : String,
+    val itemImageSource: String,
     @Json(name = "khoiLuong")
-    val itemWeight : String,
+    val itemWeight: String,
     @Json(name = "moTa")
-    val itemDescription : String,
+    val itemDescription: String,
     @Json(name = "thuongHieu")
-    val itemBrand : String,
+    val itemBrand: String,
     @Json(name = "xuatXu")
-    val itemOrigin : String
+    val itemOrigin: String
 ) : Parcelable {
     fun asLocalItem() : LocalItem {
         return LocalItem(
@@ -42,7 +41,6 @@ data class NetworkItem(
     fun asDomainItem() : Item {
         return Item(
             itemId = itemId,
-            itemBrandId = itemBrandId,
             itemName = itemName,
             itemPrice = itemPrice,
             itemDiscountedPrice = 0.00,
@@ -51,6 +49,23 @@ data class NetworkItem(
             itemDescription = itemDescription,
             itemBrand = itemBrand,
             itemOrigin = itemOrigin
+        )
+    }
+}
+
+data class NetworkItemContainer(val networkItems: List<NetworkItem>)
+fun NetworkItemContainer.asLocalItems() : List<LocalItem>{
+    return networkItems.map {
+        LocalItem(
+            itemId = it.itemId,
+            itemName = it.itemName,
+            itemPrice = it.itemPrice,
+            itemDiscountedPrice = 0.00,
+            itemImageSource = it.itemImageSource,
+            itemWeight = it.itemWeight,
+            itemDescription = it.itemDescription,
+            itemBrand = it.itemBrand,
+            itemOrigin = it.itemOrigin
         )
     }
 }

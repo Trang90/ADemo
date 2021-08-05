@@ -8,16 +8,15 @@ import kotlinx.parcelize.Parcelize
 /**Domain Model for Item**/
 @Parcelize
 data class Item(
-    val itemId : Int,
-    val itemBrandId: Int,
+    val itemId: Int,
     val itemName: String,
-    val itemPrice : Double,
-    val itemDiscountedPrice : Double,
-    val itemImageSource : String,
-    val itemWeight : String,
-    val itemDescription : String,
-    val itemBrand : String,
-    val itemOrigin : String
+    val itemPrice: Double,
+    val itemDiscountedPrice: Double,
+    val itemImageSource: String,
+    val itemWeight: String,
+    val itemDescription: String,
+    val itemBrand: String,
+    val itemOrigin: String
 ) : Parcelable{
     fun asLocalItem() : LocalItem {
         return LocalItem(
@@ -46,10 +45,10 @@ data class Item(
         )
     }
 
+
     fun asNetworkItem() : NetworkItem{
         return NetworkItem(
             itemId = itemId,
-            itemBrandId = itemBrandId,
             itemName = itemName,
             itemPrice = itemPrice,
             //itemDiscountedPrice = itemDiscountedPrice,
@@ -60,4 +59,8 @@ data class Item(
             itemOrigin = itemOrigin
         )
     }
+
+
+
+
 }
