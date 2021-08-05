@@ -9,11 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
 import com.asiasquare.byteg.shoppingdemo.databinding.ActivityMainBinding
-import com.asiasquare.byteg.shoppingdemo.favorite.FavoriteFragmentViewModel
-import com.asiasquare.byteg.shoppingdemo.repository.FavoriteRepository
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,6 +44,9 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         binding.bottomNav.setupWithNavController(navController)
 
+        setSupportActionBar(binding.toolbar)
+        setupActionBarWithNavController(navController)
+
         viewModel.favoriteItemCount.observe(this, Observer {
             binding.bottomNav.getOrCreateBadge(R.id.favoriteFragment).apply {
                 backgroundColor = ResourcesCompat.getColor(resources, R.color.secondary_500, null)
@@ -61,22 +62,12 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-        //        viewModel.itemCount.observe(this, Observer  {
-//            //override fun onChanged (){
-//                binding.bottomNav.getOrCreateBadge(R.id.favoriteFragment).apply {
-//                    backgroundColor = resources.getColor(R.color.secondary_800)
-//                    badgeTextColor = resources.getColor(R.color.white)
-//                    maxCharacterCount = 3
-//                    if (viewModel.itemCount.value != null ) {
-//                        number = viewModel.itemCount.value!! // should be change
-//                        isVisible = true
-//                    } else {
-//                        isVisible = false
-//                    }
-//                }
-//            //}
-//
-//        })
 
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
 }
+

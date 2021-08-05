@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/catalogFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.catalog.CatalogFragment"
-        android:label="fragment_catalog"
+        android:label="Catalog"
         tools:layout="@layout/fragment_catalog">
         <action
             android:id="@+id/action_catalogFragment_to_itemListFragment"
@@ -20,8 +20,8 @@
     <fragment
         android:id="@+id/itemListFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.itemlist.ItemListFragment"
-        android:label="fragment_item_list"
-        tools:layout="@layout/fragment_item_list" >
+        android:label="Items"
+        tools:layout="@layout/fragment_item_list">
         <argument
             android:name="catalogId"
             app:argType="integer" />
@@ -32,8 +32,8 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.detail.DetailFragment"
-        android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" >
+        android:label="Detail"
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="selectedItem"
             app:argType="com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem" />
@@ -60,8 +60,8 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.search.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        android:label="Search"
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_detailFragment"
             app:destination="@id/detailFragment" />

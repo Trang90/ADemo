@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/AsiaShoppingSquareDemo-main/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/AsiaShoppingSquareDemo-main/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/AsiaShoppingSquareDemo-main/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/AsiaShoppingSquareDemo-main/app/src/main/res/layout/fragment_search.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/AsiaShoppingSquareDemo-main/app/src/main/res/layout/grid_view_item_list.xml" value="0.6411290322580645" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/AsiaShoppingSquareDemo-main/app/src/main/res/layout/grid_view_search.xml" value="0.1" />

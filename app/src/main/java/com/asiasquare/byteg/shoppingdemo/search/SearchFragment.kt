@@ -80,7 +80,8 @@ class SearchFragment : Fragment(), SearchFragmentAdapter.OnClickListener {
         val searchItem = menu.findItem(R.id.searchFragment)
         val searchView = searchItem.actionView as SearchView
 
-        searchView.onQueryTextChanged { viewModel.searchQuery.value = it}
+        searchView.onQueryTextChanged {
+            viewModel.searchQuery.value = it}
     }
 
 
