@@ -8,11 +8,28 @@ import com.asiasquare.byteg.shoppingdemo.database.items.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-
 class ItemRepository(private val database: AsiaDatabase) {
 
     val localItems: LiveData<List<LocalItem>> = database.itemDao.getAllItems()
 
+
+
+    fun getLocalItemListByCatalogId(catalogId: Int): LiveData<List<LocalItem>>{
+        return database.itemDao.getAllItemsById(catalogId)
+    }
+
+    suspend fun getAllData(): List<NetworkItem>{
+        var listResult = listOf<NetworkItem>()
+        try {
+            withContext(Dispatchers.IO){
+                listResult =  ServerApi.retrofitService.getAllData()
+            }
+
+        }catch(e: Exception) {
+            e.message?.let { Log.d("Get all data",it) }
+        }
+        return listResult
+    }
 
     suspend fun getDataByCatalogId(catalogId: Int): List<NetworkItem>{
         var listResult = listOf<NetworkItem>()
@@ -34,6 +51,7 @@ class ItemRepository(private val database: AsiaDatabase) {
         }
         return listResult
     }
+
 
 
     suspend fun addLocalItem(item: LocalItem){

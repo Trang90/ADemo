@@ -7,15 +7,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.transform.CircleCropTransformation
 import com.asiasquare.byteg.shoppingdemo.R
-import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
+import com.asiasquare.byteg.shoppingdemo.database.items.LocalItem
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
 import com.asiasquare.byteg.shoppingdemo.databinding.GridViewItemListBinding
-import com.asiasquare.byteg.shoppingdemo.datamodel.ItemList
 
 
-class ItemListFragmentAdapter(private val onClickListener: OnClickListener):ListAdapter <NetworkItem, ItemListFragmentAdapter.ItemListViewHolder>(DiffCallback) {
+
+class ItemListFragmentAdapter(private val onClickListener: OnClickListener):ListAdapter <LocalItem, ItemListFragmentAdapter.ItemListViewHolder>(DiffCallback) {
 
 
     class ItemListViewHolder (private val binding: GridViewItemListBinding):
@@ -23,7 +22,7 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
 
         val btnFavorite= binding.imageViewAddFavorite
         @SuppressLint("SetTextI18n")
-        fun bind(item: NetworkItem) {
+        fun bind(item: LocalItem) {
             binding.apply {
                 anhsanpham.load(item.itemImageSource){
                     placeholder(R.drawable.loading_animation)
@@ -65,13 +64,13 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
         }
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<NetworkItem>(){
-        override fun areItemsTheSame(oldItem: NetworkItem, newItem: NetworkItem): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<LocalItem>(){
+        override fun areItemsTheSame(oldItem: LocalItem, newItem: LocalItem): Boolean {
             return oldItem.itemId == newItem.itemId
         }
 
         @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(oldItem: NetworkItem, newItem: NetworkItem): Boolean {
+        override fun areContentsTheSame(oldItem: LocalItem, newItem: LocalItem): Boolean {
             return oldItem == newItem
         }
 
@@ -80,8 +79,9 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
     /** Simple ClickListener. Return itemList Object info when user click **/
 
     interface OnClickListener {
-        fun onItemClick(item: NetworkItem)
-        fun onAddFavoriteClick(item: NetworkItem)
+        fun onItemClick(item: LocalItem)
+        fun onAddFavoriteClick(item: LocalItem)
 
     }
 }
+

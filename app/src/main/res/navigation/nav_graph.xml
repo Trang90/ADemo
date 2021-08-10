@@ -8,19 +8,19 @@
     <fragment
         android:id="@+id/catalogFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.catalog.CatalogFragment"
-        android:label="Catalog"
+        android:label="Asia Square"
         tools:layout="@layout/fragment_catalog">
         <action
             android:id="@+id/action_catalogFragment_to_itemListFragment"
             app:destination="@id/itemListFragment" />
-        <action
-            android:id="@+id/action_catalogFragment_to_blankFragment"
-            app:destination="@id/blankFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_catalogFragment_to_blankFragment"-->
+<!--            app:destination="@id/blankFragment" />-->
     </fragment>
     <fragment
         android:id="@+id/itemListFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.itemlist.ItemListFragment"
-        android:label="Items"
+        android:label="{catalogName}"
         tools:layout="@layout/fragment_item_list">
         <argument
             android:name="catalogId"
@@ -28,39 +28,42 @@
         <action
             android:id="@+id/action_itemListFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <argument
+            android:name="catalogName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.detail.DetailFragment"
-        android:label="Detail"
+        android:label="Chi Tiết"
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="selectedItem"
-            app:argType="com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem" />
+            app:argType="com.asiasquare.byteg.shoppingdemo.database.items.LocalItem" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.cart.CartFragment"
-        android:label="Cart"
+        android:label="Giỏ Hàng"
         tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.favorite.FavoriteFragment"
-        android:label="Favorite"
-        tools:layout="@layout/fragment_favorite" >
+        android:label="Yêu Thích"
+        tools:layout="@layout/fragment_favorite">
         <action
             android:id="@+id/action_favoriteFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/blankFragment"
-        android:name="com.asiasquare.byteg.shoppingdemo.testpackage.BlankFragment"
-        android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" />
+<!--    <fragment-->
+<!--        android:id="@+id/blankFragment"-->
+<!--        android:name="com.asiasquare.byteg.shoppingdemo.testpackage.BlankFragment"-->
+<!--        android:label="fragment_blank"-->
+<!--        tools:layout="@layout/fragment_blank" />-->
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.search.SearchFragment"
-        android:label="Search"
+        android:label="Tìm Kiếm"
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_detailFragment"

@@ -1,19 +1,14 @@
 package com.asiasquare.byteg.shoppingdemo.catalog
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.asiasquare.byteg.shoppingdemo.R
 import com.asiasquare.byteg.shoppingdemo.databinding.FragmentCatalogBinding
-import com.asiasquare.byteg.shoppingdemo.detail.DetailFragmentArgs
 
 /**
 First fragment of the app.
@@ -65,7 +60,7 @@ class CatalogFragment : Fragment() {
         viewModel.navigateToCatalog.observe(viewLifecycleOwner, Observer { catalog ->
             catalog?.let {
                 this.findNavController().navigate(
-                    CatalogFragmentDirections.actionCatalogFragmentToItemListFragment(catalog.id)
+                    CatalogFragmentDirections.actionCatalogFragmentToItemListFragment(catalog.id, catalog.name)
                 )
                 viewModel.onNavigationComplete()
             }

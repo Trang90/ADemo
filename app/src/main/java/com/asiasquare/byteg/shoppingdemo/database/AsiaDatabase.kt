@@ -13,8 +13,7 @@ import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
 import com.asiasquare.byteg.shoppingdemo.database.items.LocalItem
 import com.asiasquare.byteg.shoppingdemo.database.items.ShoppingBasketItem
 
-
-@Database(entities = [LocalItem::class, ShoppingBasketItem::class, FavoriteItem::class, LocalCustomer::class], version = 4,  exportSchema = false)
+@Database(entities = [LocalItem::class, ShoppingBasketItem::class, FavoriteItem::class, LocalCustomer::class], version = 6,  exportSchema = false)
 abstract class AsiaDatabase : RoomDatabase(){
     abstract val itemDao : ItemDao
     abstract val basketItemDao : ShoppingBasketItemDao

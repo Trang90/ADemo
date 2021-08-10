@@ -10,23 +10,23 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
 import com.asiasquare.byteg.shoppingdemo.databinding.GridViewFavoriteItemBinding
-import com.asiasquare.byteg.shoppingdemo.datamodel.ItemList
+import java.util.*
 
 
 class FavoriteFragmentAdapter (private val onClickListener: OnClickListener): ListAdapter<FavoriteItem, FavoriteFragmentAdapter.FavoriteViewHolder>(DiffCallback) {
 
 
     /** ViewHolder class **/
-    class FavoriteViewHolder(val binding: GridViewFavoriteItemBinding):RecyclerView.ViewHolder(binding.root) {
+    class FavoriteViewHolder(private val binding: GridViewFavoriteItemBinding):RecyclerView.ViewHolder(binding.root) {
         /** Bind item to View, load image here using Coil */
 
         val btDelete = binding.buttonXoaYeuThich
+
         fun bind (favorite: FavoriteItem){
             binding.anhItemYeuThich.load(favorite.itemImageSource)
             binding.tenItemYeuThich.text = favorite.itemName
             binding.giaItemYeuThich.text = favorite.itemPrice.toString()
             binding.khoiLuongItemYeuThich.text = favorite.itemWeight
-
         }
 
         /** inflate the small item in recyclerView **/
@@ -48,6 +48,7 @@ class FavoriteFragmentAdapter (private val onClickListener: OnClickListener): Li
 
         val item = getItem(position)
         holder.bind(item)
+
         holder.itemView.setOnClickListener {
             onClickListener.onItemClick(item)
         }
@@ -55,7 +56,6 @@ class FavoriteFragmentAdapter (private val onClickListener: OnClickListener): Li
         holder.btDelete.setOnClickListener {
             onClickListener.onDeleteClick(item)
         }
-
 
     }
 
@@ -72,18 +72,11 @@ class FavoriteFragmentAdapter (private val onClickListener: OnClickListener): Li
 
     }
 
-//    /** Simple ClickListener. Return favorite Object info when user click **/
-//    class OnClickListener(val clickListener : (favorite : FavoriteItem) -> Unit){
-//        var viewModel : FavoriteFragmentViewModel?= null
-//        fun onClick(favorite: FavoriteItem) = clickListener(favorite)
-//
-//
-//
-//    }
     /** Simple ClickListener. Return favorite Object info when user click **/
     interface OnClickListener{
         fun onItemClick(favorite: FavoriteItem)
         fun onDeleteClick(favorite: FavoriteItem)
     }
+
 
 }

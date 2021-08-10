@@ -2,12 +2,17 @@ package com.asiasquare.byteg.shoppingdemo.itemlist
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.*
-import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
+import com.asiasquare.byteg.shoppingdemo.backendservice.ServerApi
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
+import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
+import com.asiasquare.byteg.shoppingdemo.database.items.LocalItem
 import com.asiasquare.byteg.shoppingdemo.repository.FavoriteRepository
 import com.asiasquare.byteg.shoppingdemo.repository.ItemRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 enum class ListStatus { LOADING, ERROR, DONE }
 
@@ -19,8 +24,8 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
      */
 
 
-    private val _navigateToDetail = MutableLiveData<NetworkItem?>()
-    val navigateToDetail : LiveData<NetworkItem?>
+    private val _navigateToDetail = MutableLiveData<LocalItem?>()
+    val navigateToDetail : LiveData<LocalItem?>
         get() = _navigateToDetail
 
     private val _list = MutableLiveData<List<NetworkItem>>()
@@ -36,7 +41,7 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
     private val favoriteItemRepository = FavoriteRepository(database)
     private val itemRepository = ItemRepository(database)
 
-
+    val localItemList = itemRepository.getLocalItemListByCatalogId(catalogId)
 
     private val _isFavorite =MutableLiveData<Boolean>()
     val isFavorite : LiveData<Boolean>
@@ -56,8 +61,23 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
 
             _status.postValue (ListStatus.DONE)
 
-            itemRepository.addListLocalItem(items)
+            saveDataToLocalDatabase(items)
         }
+    }
+
+    private fun saveDataToLocalDatabase(items: List<NetworkItem>){
+        viewModelScope.launch {
+            try {
+
+                itemRepository.addListLocalItem(items)
+
+            }catch (e: Exception){
+
+                _status.postValue(ListStatus.ERROR)
+
+            }
+        }
+
     }
 
 
@@ -90,7 +110,7 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
 //        }
 //    }
 
-    fun onFavoriteClicking(item: NetworkItem) {
+    fun onFavoriteClicking(item: LocalItem) {
 
         viewModelScope.launch {
 
@@ -112,8 +132,8 @@ class ItemListFragmentViewModel(application: Application, catalogId: Int) : Andr
 
 
 
-    fun onDetailClick( itemList: NetworkItem){
-        _navigateToDetail.value = itemList
+    fun onDetailClick( item: LocalItem){
+        _navigateToDetail.value = item
     }
 
     fun onNavigationComplete(){

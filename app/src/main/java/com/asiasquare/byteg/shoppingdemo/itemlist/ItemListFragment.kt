@@ -1,21 +1,21 @@
 package com.asiasquare.byteg.shoppingdemo.itemlist
 
-
 import android.os.Bundle
-import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.appcompat.widget.SearchView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.asiasquare.byteg.shoppingdemo.R
-import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
+import com.asiasquare.byteg.shoppingdemo.database.items.LocalItem
+import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
 import com.asiasquare.byteg.shoppingdemo.databinding.FragmentItemListBinding
-import com.asiasquare.byteg.shoppingdemo.itemlist.ListStatus.*
 import kotlin.properties.Delegates
-import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem as NetworkItem
+
 
 class ItemListFragment : Fragment(), ItemListFragmentAdapter.OnClickListener {
 
@@ -69,7 +69,7 @@ class ItemListFragment : Fragment(), ItemListFragmentAdapter.OnClickListener {
             }
         })
         /** Update data to adapter **/
-        viewModel.list.observe(viewLifecycleOwner, Observer {
+        viewModel.localItemList.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }
@@ -101,11 +101,11 @@ class ItemListFragment : Fragment(), ItemListFragmentAdapter.OnClickListener {
         _binding = null
     }
 
-    override fun onItemClick(item: NetworkItem) {
+    override fun onItemClick(item: LocalItem) {
         viewModel.onDetailClick(item)
     }
 
-    override fun onAddFavoriteClick(item: NetworkItem) {
+    override fun onAddFavoriteClick(item: LocalItem) {
         viewModel.onFavoriteClicking(item)
     }
 

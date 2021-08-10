@@ -1,14 +1,10 @@
 package com.asiasquare.byteg.shoppingdemo.backendservice
 
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
-import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItemContainer
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
 
 private const val BASE_URL = "http://www.germanyshoppingsquare.com/"
@@ -24,26 +20,29 @@ private val retrofit = Retrofit.Builder()
 
 interface ServerDatabaseApiService{
 
-    @POST("server/ungdungchaua/getsanphamasiaandroid0.php?page=1")
+    @POST("server/ungdungchaua/getsanphamasia0.php")
     suspend fun getDataFirst(): List<NetworkItem>
 
-    @POST("server/ungdungchaua/getsanphamasiaandroid1.php?page=1")
+    @POST("server/ungdungchaua/getsanphamasia1.php")
     suspend fun getDataSecond(): List<NetworkItem>
 
-    @POST("server/ungdungchaua/getsanphamasiaandroid2.php?page=1")
+    @POST("server/ungdungchaua/getsanphamasia2.php")
     suspend fun getDataThird(): List<NetworkItem>
 
-    @POST("server/ungdungchaua/getsanphamasiaandroid3.php?page=1")
+    @POST("server/ungdungchaua/getsanphamasia3.php")
     suspend fun getDataFourth(): List<NetworkItem>
 
-    @POST("server/ungdungchaua/getsanphamasiaandroid4.php?page=1")
+    @POST("server/ungdungchaua/getsanphamasia4.php")
     suspend fun getDataFifth(): List<NetworkItem>
 
-    @POST("server/ungdungchaua/getsanphamasiaandroid5.php?page=1")
+    @POST("server/ungdungchaua/getsanphamasia5.php")
     suspend fun getDataSixth(): List<NetworkItem>
 
-    @POST("server/ungdungchaua/getsanphamasiaandroid6.php?page=1")
+    @POST("server/ungdungchaua/getsanphamasia6.php")
     suspend fun getDataSeventh(): List<NetworkItem>
+
+    @POST("server/ungdungchaua/gettatcasanphamasia.php")
+    suspend fun getAllData(): List<NetworkItem>
 }
 
 object ServerApi{

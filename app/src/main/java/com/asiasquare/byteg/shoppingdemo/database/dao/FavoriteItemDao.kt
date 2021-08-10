@@ -8,7 +8,7 @@ import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
 @Dao
 interface FavoriteItemDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(item : FavoriteItem)
 
     @Delete
@@ -16,9 +16,6 @@ interface FavoriteItemDao {
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(item : FavoriteItem)
-
-    @Delete
-    fun deleteCustomer(item : FavoriteItem) : Int
 
     @Query(value = "DELETE FROM favorite_table")
     fun clearFavoriteList()
@@ -32,10 +29,10 @@ interface FavoriteItemDao {
     @Query("SELECT * FROM favorite_table ORDER BY itemId DESC LIMIT 1")
     fun getItem(): FavoriteItem?
 
+    @Query(value = "SELECT COUNT(itemId) from favorite_table")
+    fun getFavoriteItemsCount() : Int
 
     @Query(value = "SELECT COUNT(itemId) from favorite_table")
     fun getLiveItemsCount() : LiveData<Int>
 
-    @Query(value = "SELECT COUNT(itemId) from favorite_table")
-    fun getFavoriteItemsCount() : Int
 }

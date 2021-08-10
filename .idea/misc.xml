@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_cart.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_detail.xml" value="0.1962962962962963" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_item_list.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_search.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/gird_view_cart_item.xml" value="0.33" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/grid_view_favorite_item.xml" value="0.178125" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/grid_view_item_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/spinner_item_custom.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/AsiaShoppingSquareDemo-main/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/AsiaShoppingSquareDemo-main/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/AsiaShoppingSquareDemo-main/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />

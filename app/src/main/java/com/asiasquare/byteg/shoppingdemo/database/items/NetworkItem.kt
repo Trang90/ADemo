@@ -2,7 +2,6 @@ package com.asiasquare.byteg.shoppingdemo.database.items
 
 import android.os.Parcelable
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
 
 /**Domain Model for Item**/
@@ -10,6 +9,8 @@ import kotlinx.parcelize.Parcelize
 data class NetworkItem(
     @Json(name = "id")
     val itemId: Int,
+    @Json(name = "idHang")
+    val itemBrandId: Int,
     @Json(name = "tenSanPham")
     val itemName: String,
     @Json(name = "giaSanPham")
@@ -28,6 +29,7 @@ data class NetworkItem(
     fun asLocalItem() : LocalItem {
         return LocalItem(
             itemId = itemId,
+            itemBrandId = itemBrandId,
             itemName = itemName,
             itemPrice = itemPrice,
             itemDiscountedPrice = 0.00,
@@ -41,6 +43,7 @@ data class NetworkItem(
     fun asDomainItem() : Item {
         return Item(
             itemId = itemId,
+            itemBrandId = itemBrandId,
             itemName = itemName,
             itemPrice = itemPrice,
             itemDiscountedPrice = 0.00,
@@ -58,6 +61,7 @@ fun NetworkItemContainer.asLocalItems() : List<LocalItem>{
     return networkItems.map {
         LocalItem(
             itemId = it.itemId,
+            itemBrandId = it.itemBrandId,
             itemName = it.itemName,
             itemPrice = it.itemPrice,
             itemDiscountedPrice = 0.00,
@@ -69,3 +73,4 @@ fun NetworkItemContainer.asLocalItems() : List<LocalItem>{
         )
     }
 }
+

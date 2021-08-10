@@ -3,13 +3,12 @@ package com.asiasquare.byteg.shoppingdemo.search
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.asiasquare.byteg.shoppingdemo.R
 import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
-import com.asiasquare.byteg.shoppingdemo.database.dao.ItemDao
 import com.asiasquare.byteg.shoppingdemo.database.items.LocalItem
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
-import com.asiasquare.byteg.shoppingdemo.datamodel.ItemList
+import com.asiasquare.byteg.shoppingdemo.itemlist.ListStatus
 import com.asiasquare.byteg.shoppingdemo.repository.FavoriteRepository
+import com.asiasquare.byteg.shoppingdemo.repository.ItemRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
@@ -18,8 +17,7 @@ class SearchFragmentViewModel (application: Application) : AndroidViewModel(appl
 
     private val database = AsiaDatabase.getInstance(application)
     private val favoriteItemRepository = FavoriteRepository(database)
-
-
+    private val itemRepository = ItemRepository(database)
 
     val searchQuery = MutableStateFlow("")
     private val searchFlow = searchQuery.flatMapLatest {
@@ -29,8 +27,8 @@ class SearchFragmentViewModel (application: Application) : AndroidViewModel(appl
     val searchItems = searchFlow.asLiveData()
 
 
-    private val _navigateToDetail = MutableLiveData<NetworkItem?>()
-    val navigateToDetail : MutableLiveData<NetworkItem?>
+    private val _navigateToDetail = MutableLiveData<LocalItem?>()
+    val navigateToDetail : MutableLiveData<LocalItem?>
         get() = _navigateToDetail
 
 
@@ -38,8 +36,31 @@ class SearchFragmentViewModel (application: Application) : AndroidViewModel(appl
     val isFavorite : LiveData<Boolean>
         get() = _isFavorite
 
+
+    init {
+        getData()
+    }
+
+    private fun getData(){
+        viewModelScope.launch {
+            val items = itemRepository.getAllData()
+            saveDataToLocalDatabase(items)
+        }
+    }
+
+    private fun saveDataToLocalDatabase(items: List<NetworkItem>){
+        viewModelScope.launch {
+            try {
+                itemRepository.addListLocalItem(items)
+            }catch (e: Exception){
+                e.message?.let { Log.d("Search: Get all data",it) }
+            }
+        }
+
+    }
+
     fun onDetailClick( item: LocalItem){
-        _navigateToDetail.value = item.asDomainItem().asNetworkItem()
+        _navigateToDetail.value = item
     }
 
     fun onNavigationComplete(){

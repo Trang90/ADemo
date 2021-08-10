@@ -3,16 +3,17 @@ package com.asiasquare.byteg.shoppingdemo.search
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.asiasquare.byteg.shoppingdemo.database.items.LocalItem
+import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
 import com.asiasquare.byteg.shoppingdemo.databinding.GridViewSearchItemBinding
 
 class SearchFragmentAdapter(private val onClickListener: OnClickListener) : ListAdapter<LocalItem, SearchFragmentAdapter.SearchViewHolder>(DiffCallback){
 
-    class SearchViewHolder(private val binding: GridViewSearchItemBinding) :
+    class SearchViewHolder(private val binding:GridViewSearchItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         val btnFavorite= binding.imageViewAddFavorite

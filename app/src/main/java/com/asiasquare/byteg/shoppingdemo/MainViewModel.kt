@@ -1,11 +1,9 @@
 package com.asiasquare.byteg.shoppingdemo
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
+import com.asiasquare.byteg.shoppingdemo.repository.CartRepository
 import com.asiasquare.byteg.shoppingdemo.repository.FavoriteRepository
 import kotlinx.coroutines.launch
 
@@ -13,23 +11,10 @@ import kotlinx.coroutines.launch
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val database = AsiaDatabase.getInstance(application)
     private val favoriteItemRepository = FavoriteRepository(database)
+    private val cartRepository = CartRepository(database)
 
     val favoriteItemCount = favoriteItemRepository.favoriteLiveItemCount
-
-    //    private val _itemCount = MutableLiveData<Int>()
-//    val itemCount :LiveData<Int>
-//        get() = _itemCount
-
-//    init {
-//      getCountFavorite()
-//    }
-
-//    fun getCountFavorite(): Int? {
-//        viewModelScope.launch {
-//            _itemCount.value = favoriteItemRepository.getFavoriteItemCount()
-//        }
-//        return _itemCount.value
-//    }
+    val cartAmountItemCount =  cartRepository.cartLiveAmountItemCount
 
     /**
      * Factory for constructing CatalogFragmentViewModel with parameter

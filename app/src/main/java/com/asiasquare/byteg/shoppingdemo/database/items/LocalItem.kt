@@ -13,7 +13,7 @@ data class LocalItem(
     @ColumnInfo(name = "item_id")
     var itemId : Int,
     @ColumnInfo(name = "item_brand_id")
-    var itemBrandId: Int = 0,
+    var itemBrandId: Int,
     @ColumnInfo(name = "item_name")
     var itemName: String,
     @ColumnInfo(name = "item_price")
@@ -35,6 +35,7 @@ data class LocalItem(
     fun asDomainItem(): Item {
         return Item(
             itemId = itemId,
+            itemBrandId = itemBrandId,
             itemName = itemName,
             itemPrice = itemPrice,
             itemDiscountedPrice = 0.00,
