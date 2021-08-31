@@ -2,16 +2,18 @@ package com.asiasquare.byteg.shoppingdemo
 
 import android.os.Build
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.asiasquare.byteg.shoppingdemo.databinding.ActivityMainBinding
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -84,8 +86,4 @@ class MainActivity : AppCompatActivity() {
 
 
 }
-
-
-
-
 

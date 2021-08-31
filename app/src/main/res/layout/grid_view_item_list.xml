@@ -28,6 +28,7 @@
 
         <TextView
             android:id="@+id/tensanpham"
+            style="@style/text_ellipsise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -40,10 +41,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/anhsanpham"
-            android:maxLines="2"
-            android:ellipsize="end"
-            />
+            app:layout_constraintTop_toBottomOf="@id/anhsanpham" />
 
         <TextView
             android:id="@+id/giasanpham"
@@ -54,13 +52,13 @@
             android:textSize="24sp"
             android:textColor="#fa3223"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/image_view_add_favorite"
-            app:layout_constraintBottom_toBottomOf="@id/image_view_add_favorite"/>
+            app:layout_constraintTop_toTopOf="@id/iv_add_favorite"
+            app:layout_constraintBottom_toBottomOf="@id/iv_add_favorite"/>
 
         <ImageView
-            android:id="@+id/image_view_add_favorite"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:id="@+id/iv_add_favorite"
+            android:layout_width="@dimen/heart_size"
+            android:layout_height="@dimen/heart_size"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
@@ -69,7 +67,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/giasanpham"
             app:layout_constraintVertical_bias="1.0"
-            android:src="@drawable/add" />
+            android:src="@drawable/timden24" />
 
 
         <!--  //TODO SALE-->

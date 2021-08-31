@@ -1,12 +1,18 @@
 package com.asiasquare.byteg.shoppingdemo.catalog
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.asiasquare.byteg.shoppingdemo.R
+import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
+import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
 import com.asiasquare.byteg.shoppingdemo.datamodel.Catalog
+import com.asiasquare.byteg.shoppingdemo.repository.ItemRepository
+import kotlinx.coroutines.launch
 
 class CatalogFragmentViewModel(application: Application) : AndroidViewModel(application){
-
+    private val database = AsiaDatabase.getInstance(application)
+    private val itemRepository = ItemRepository(database)
     /**
      * List of catalog, observe this to get the change in database
      */
@@ -21,6 +27,7 @@ class CatalogFragmentViewModel(application: Application) : AndroidViewModel(appl
 
     init {
         generateDummyList()
+        getData()
     }
 
 
@@ -38,6 +45,30 @@ class CatalogFragmentViewModel(application: Application) : AndroidViewModel(appl
         catalogList.add(Catalog(5,"Thực phẩm đóng hộp", R.drawable.ct_dohop))
 
         _catalogList.value= catalogList
+    }
+
+    /**
+     * get all item for Search, call this function in Catalog instead of Search
+     * to avoid displaying empty_view
+     * when the list has not been retrieved
+     */
+
+    private fun getData(){
+        viewModelScope.launch {
+            val items = itemRepository.getAllData()
+            saveDataToLocalDatabase(items)
+        }
+    }
+
+    private fun saveDataToLocalDatabase(items: List<NetworkItem>){
+        viewModelScope.launch {
+            try {
+                itemRepository.addListLocalItem(items)
+            }catch (e: Exception){
+                e.message?.let { Log.d("Search: Get all data",it) }
+            }
+        }
+
     }
 
     /** Pass catalog value when onClick **/

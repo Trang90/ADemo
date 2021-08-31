@@ -1,6 +1,7 @@
 package com.asiasquare.byteg.shoppingdemo.database.items
 
 import android.os.Parcelable
+import android.service.controls.actions.BooleanAction
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -29,7 +30,9 @@ data class LocalItem(
     @ColumnInfo(name = "item_brand")
     var itemBrand : String,
     @ColumnInfo(name = "item_origin")
-    var itemOrigin : String
+    var itemOrigin : String,
+    @ColumnInfo(name = "item_favorite")
+    var itemFavorite : Boolean
 ) : Parcelable {
 
     fun asDomainItem(): Item {

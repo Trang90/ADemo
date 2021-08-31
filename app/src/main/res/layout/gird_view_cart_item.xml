@@ -18,7 +18,7 @@
         android:layout_margin="4dp">
 
         <TextView
-            android:id="@+id/ten_item_gio_hang"
+            android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -30,38 +30,39 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/button_xoa_gio_hang"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/anh_item_gio_hang"
+            app:layout_constraintStart_toEndOf="@id/ivPicture"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/anh_item_gio_hang"
+            android:id="@+id/ivPicture"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
-            android:id="@+id/khoi_luong_item_gio_hang"
+            android:id="@+id/tvWeight"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            app:layout_constraintStart_toEndOf="@id/anh_item_gio_hang"
-            app:layout_constraintTop_toBottomOf="@id/ten_item_gio_hang"
-            tools:text="Khối Lượng: 220g" />
+            android:layout_marginStart="10dp"
+            android:layout_height="0dp"
+            tools:text="Weight: 220g"
+            app:layout_constraintStart_toEndOf="@id/ivPicture"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
 
         <TextView
-            android:id="@+id/gia_item_gio_hang"
+            android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
             android:textColor="#fa3223"
-            app:layout_constraintStart_toEndOf="@id/anh_item_gio_hang"
-            app:layout_constraintTop_toBottomOf="@id/khoi_luong_item_gio_hang"
-            tools:text="50.000" />
+            tools:text="50.000"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/ivPicture"
+            app:layout_constraintTop_toBottomOf="@id/tvWeight" />
 
         <ImageButton
             android:id="@+id/button_giam"
@@ -70,12 +71,12 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/minus"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/anh_item_gio_hang"
-            app:layout_constraintTop_toBottomOf="@+id/gia_item_gio_hang"
-            app:layout_constraintVertical_bias="0.571" />
+            app:layout_constraintStart_toEndOf="@id/ivPicture"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrice"
+            app:layout_constraintVertical_bias="0.571"
+            android:src="@drawable/minus"/>
 
         <TextView
             android:id="@+id/tv_item_amount"
@@ -86,13 +87,10 @@
             android:gravity="center"
             android:text="1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toRightOf="@+id/button_giam"
+            app:layout_constraintStart_toEndOf="@+id/button_giam"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrice"
             app:layout_goneMarginLeft = "48dp"
-            app:layout_constraintRight_toLeftOf="@+id/button_tang"
-            app:layout_constraintTop_toBottomOf="@+id/gia_item_gio_hang"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.52" />
 
         <ImageButton
             android:id="@+id/button_tang"
@@ -100,37 +98,37 @@
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/add"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_item_amount"
-            app:layout_constraintTop_toBottomOf="@+id/gia_item_gio_hang"
-            app:layout_constraintVertical_bias="0.52" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPrice"
+            app:layout_constraintVertical_bias="0.52"
+            android:src="@drawable/add"/>
 
         <ImageButton
             android:id="@+id/button_xoa_gio_hang"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/cancel_64"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/cancel_64" />
+
 
 
         <!--  //TODO SALE-->
         <TextView
-            android:id="@+id/giakhuyenmai"
+            android:id="@+id/tvDiscountedPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="5dp"
-            android:textColor="#fa3223"
+            tools:text="40.000"
             android:visibility="invisible"
-            app:layout_constraintStart_toEndOf="@+id/gia_item_gio_hang"
-            app:layout_constraintTop_toBottomOf="@+id/khoi_luong_item_gio_hang"
-            tools:text="40.000" />
-
+            android:textColor="#fa3223"
+            app:layout_constraintStart_toEndOf="@+id/tvPrice"
+            app:layout_constraintTop_toBottomOf="@+id/tvWeight" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

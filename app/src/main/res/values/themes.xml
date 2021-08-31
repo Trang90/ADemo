@@ -19,4 +19,25 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="text_ellipsise">
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+    </style>
+
+
+    <style name="FilledBoxColor" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <!-- underline color in FilledBox style, border color in OutlinedBox -->
+        <item name="boxStrokeColor">@color/prime_500</item>
+
+        <!-- The color of the label when it is collapsed and the text field is active -->
+        <item name="hintTextColor">@color/prime_500</item>
+        ->
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerSize">10%</item>
+    </style>
 </resources>

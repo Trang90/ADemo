@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.asiasquare.byteg.shoppingdemo.databinding.FragmentCatalogBinding
-
 /**
 First fragment of the app.
 Display a list of catalog for user to choose.
@@ -67,12 +66,6 @@ class CatalogFragment : Fragment() {
 
         })
 
-        //BUTTON TEST
-//        binding.buttonTest.setOnClickListener {
-//            this.findNavController().navigate(
-//                CatalogFragmentDirections.actionCatalogFragmentToBlankFragment()
-//            )
-//        }
 
         return binding.root
     }

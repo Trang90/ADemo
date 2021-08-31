@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".payment.order.OrderFragment">
+
+
+    <LinearLayout
+        android:id="@+id/layout_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/editText_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edit_text_custom"
+            android:drawableStart="@drawable/ic_baseline_person_24"
+            android:drawablePadding="10dp"
+            android:elevation="5dp"
+            android:ems="10"
+            android:hint="Name"
+            android:imeOptions="actionDone"
+            android:inputType="textPersonName"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/editText_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/edit_text_custom"
+            android:drawableStart="@drawable/ic_baseline_home_24"
+            android:drawablePadding="10dp"
+            android:elevation="5dp"
+            android:ems="10"
+            android:hint="Address"
+            android:imeOptions="actionDone"
+            android:inputType="textPersonName"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/editTextText_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/edit_text_custom"
+            android:drawableStart="@drawable/ic_baseline_email_24"
+            android:drawablePadding="10dp"
+            android:elevation="5dp"
+            android:ems="10"
+            android:hint="Email"
+            android:imeOptions="actionDone"
+            android:inputType="textPersonName"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/editText_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/edit_text_custom"
+            android:drawableStart="@drawable/ic_baseline_phone_android_24"
+            android:drawablePadding="10dp"
+            android:elevation="5dp"
+            android:ems="10"
+            android:hint="Phone number"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:padding="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_date_picker"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/editText_date_picker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_margin="5dp"
+                android:background="@drawable/edit_text_custom"
+                android:drawableStart="@drawable/ic_baseline_date_range_24"
+                android:drawablePadding="10dp"
+                android:elevation="5dp"
+                android:ems="10"
+                android:hint="@string/chon_ngay_lay_hang"
+                android:imeOptions="actionDone"
+                android:focusable="false"
+                android:padding="10dp" />
+            <EditText
+                android:id="@+id/editText_hour_picker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/edit_text_custom"
+                android:drawableStart="@drawable/ic_baseline_access_time_24"
+                android:drawablePadding="10dp"
+                android:elevation="5dp"
+                android:ems="10"
+                android:hint="@string/_00_00"
+                android:imeOptions="actionDone"
+                android:focusable="false"
+                android:padding="10dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_order"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/shipping_fee"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            tools:text="5.99"
+            android:textColor="#fa3223" />
+
+        <TextView
+            android:id="@+id/total_price_of_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            tools:text="100.000đ"
+            android:textColor="#fa3223" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_buy_more"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="@string/tiep_tuc_dat_hang"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="@string/Thanh_toan"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

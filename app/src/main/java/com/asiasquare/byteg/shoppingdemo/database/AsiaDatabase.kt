@@ -5,20 +5,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.asiasquare.byteg.shoppingdemo.database.customers.LocalCustomer
-import com.asiasquare.byteg.shoppingdemo.database.dao.FavoriteItemDao
-import com.asiasquare.byteg.shoppingdemo.database.dao.ItemDao
-import com.asiasquare.byteg.shoppingdemo.database.dao.LocalCustomerDatabaseDao
-import com.asiasquare.byteg.shoppingdemo.database.dao.ShoppingBasketItemDao
+import com.asiasquare.byteg.shoppingdemo.database.customers.LocalOrder
+import com.asiasquare.byteg.shoppingdemo.database.dao.*
 import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
 import com.asiasquare.byteg.shoppingdemo.database.items.LocalItem
 import com.asiasquare.byteg.shoppingdemo.database.items.ShoppingBasketItem
 
-@Database(entities = [LocalItem::class, ShoppingBasketItem::class, FavoriteItem::class, LocalCustomer::class], version = 6,  exportSchema = false)
+@Database(entities = [LocalItem::class, ShoppingBasketItem::class, FavoriteItem::class, LocalCustomer::class, LocalOrder::class], version = 8,  exportSchema = false)
 abstract class AsiaDatabase : RoomDatabase(){
     abstract val itemDao : ItemDao
     abstract val basketItemDao : ShoppingBasketItemDao
     abstract val favoriteItemDao : FavoriteItemDao
     abstract val localCustomerDatabaseDao : LocalCustomerDatabaseDao
+    abstract val localOrderDao : LocalOrderDao
 
     companion object{
         @Volatile

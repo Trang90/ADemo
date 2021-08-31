@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            tools:text="Chi tiết: "
+            tools:text="Detail: "
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/chi_tiet_san_pham_tilte"
             app:layout_constraintTop_toBottomOf="@+id/chi_tiet_san_pham_tilte" />

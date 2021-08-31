@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-tools:context=".cart.CartFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".favorite.FavoriteFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_gio_hang"
@@ -20,7 +23,6 @@ tools:context=".cart.CartFragment">
             />
 
         <RelativeLayout
-
             android:id="@+id/empty_view"
             android:visibility="invisible"
             android:layout_width="wrap_content"
@@ -52,8 +54,6 @@ tools:context=".cart.CartFragment">
                 android:textSize="@dimen/textsize_blank_site"
                 android:text="@string/empty_view_title_shopping_cart"
                 android:textAppearance="?android:textAppearanceMedium" />
-
-
         </RelativeLayout>
 
         <TextView
@@ -78,6 +78,6 @@ tools:context=".cart.CartFragment">
             android:background="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

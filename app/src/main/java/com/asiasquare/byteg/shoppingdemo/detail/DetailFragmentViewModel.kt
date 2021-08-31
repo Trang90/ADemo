@@ -20,7 +20,6 @@ class DetailFragmentViewModel(item: LocalItem, application: Application) : Andro
     private val favoriteItemRepository = FavoriteRepository(database)
     private val cartItemRepository = CartRepository(database)
 
-
     private val _selectedItem = item.asDomainItem()
 
     private val _isFavorite =MutableLiveData<Boolean>()
@@ -55,7 +54,6 @@ class DetailFragmentViewModel(item: LocalItem, application: Application) : Andro
         }
     }
 
-
     fun onCartClicking() {
         viewModelScope.launch {
             //Try to get this item from current cart
@@ -65,19 +63,14 @@ class DetailFragmentViewModel(item: LocalItem, application: Application) : Andro
                 when {
                     item.itemAmount < 50 -> {
                         //update the item amount
-                        itemAmount += item.itemAmount
-                        if (itemAmount < 50) {
-                            cartItemRepository.updateCartItem(_selectedItem.asCartItem(itemAmount))
+                        val amount = itemAmount + item.itemAmount
+                        if (amount < 50) {
+                            cartItemRepository.updateCartItem(_selectedItem.asCartItem(amount))
                             Log.d("Detail viewmodel", "So Luong da duoc update")
                         } else
                             cartItemRepository.updateCartItem(_selectedItem.asCartItem(50))
                         Log.d("Detail viewmodel", "Da du 50 san pham trong gio hang")
                     }
-//                    else -> {
-//                        //update the item amount
-//                        cartItemRepository.updateCartItem(_selectedItem.asCartItem(50))
-//                        Log.d("Detail viewmodel", "Da du 50 san pham trong gio hang")
-//                    }
                 }
             } else
             //Add this new item to the cart
@@ -85,7 +78,6 @@ class DetailFragmentViewModel(item: LocalItem, application: Application) : Andro
             Log.d("Detail viewmodel","Them $itemAmount Item vao Shopping Basket")
         }
     }
-
 
     fun setAmount(amount: Int){
         itemAmount = amount

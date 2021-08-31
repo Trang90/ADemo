@@ -23,7 +23,7 @@ class SearchFragment : Fragment(), SearchFragmentAdapter.OnClickListener {
     /** binding will only exist between onAttach and on Detach **/
     private var _binding : FragmentSearchBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var searchView : SearchView
     /**
      * Create viewModel, provide application to Factory to create an AndroidViewModel class
      */
@@ -32,6 +32,8 @@ class SearchFragment : Fragment(), SearchFragmentAdapter.OnClickListener {
         ViewModelProvider(this, SearchFragmentViewModel.Factory(activity.application))
             .get(SearchFragmentViewModel::class.java)
     }
+
+    private var toast : Toast? = null
 
 
     override fun onCreateView(
@@ -50,6 +52,7 @@ class SearchFragment : Fragment(), SearchFragmentAdapter.OnClickListener {
         /** Update data to adapter **/
         viewModel.searchItems.observe(viewLifecycleOwner, Observer {
             it?.let {
+                adapter.submitList(it)
                 if (viewModel.searchQuery.value.isNotEmpty()) {
                     binding.recyclerviewSearch.visibility = View.VISIBLE
                 }
@@ -61,15 +64,13 @@ class SearchFragment : Fragment(), SearchFragmentAdapter.OnClickListener {
                 }else
                     binding.findEmptyTv.visibility = View.GONE
 
-                adapter.submitList(it)
+
             }
         })
-
+        /** weird behavior **/
         viewModel.isFavorite.observe(viewLifecycleOwner, Observer {
-            when(it){
-                true -> Toast.makeText(context, "Đã thêm sản phẩm vào danh sách Yêu thích", Toast.LENGTH_LONG).show()
-                else -> Toast.makeText(context, "Đã xóa sản phẩm khỏi danh sách Yêu thích", Toast.LENGTH_LONG).show()
-            }
+            showToast(it)
+
         })
 
         /** Navigate to detail by Id **/
@@ -87,17 +88,31 @@ class SearchFragment : Fragment(), SearchFragmentAdapter.OnClickListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.bottom_navigation_menu, menu)
+        inflater.inflate(R.menu.menu_action_search, menu)
+
+        val sort = menu.findItem(R.id.sortItem)
+        sort.isVisible = false
 
         val searchItem = menu.findItem(R.id.searchFragment)
-        val searchView = searchItem.actionView as SearchView
+        searchView = searchItem.actionView as SearchView
+        searchItem.expandActionView() // automatically expand searchView
+        searchView.maxWidth = Integer.MAX_VALUE // close button alignment
+        //Restoring the SearchView when rotation
+        val pendingQuery = viewModel.searchQuery.value
+
+        if (pendingQuery != null && pendingQuery.isNotEmpty()){
+            searchItem.expandActionView()
+            searchView.setQuery(pendingQuery, false)
+        }
+
 
         searchView.onQueryTextChanged { viewModel.searchQuery.value = it}
+
     }
 
 
-    override fun onItemClick(search: LocalItem) {
-        viewModel.onDetailClick(search)
+    override fun onItemClick(item: LocalItem) {
+        viewModel.onDetailClick(item)
     }
 
     override fun onAddFavoriteClick(item: LocalItem) {
@@ -108,6 +123,18 @@ class SearchFragment : Fragment(), SearchFragmentAdapter.OnClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        searchView.setOnQueryTextListener(null)
+    }
+
+    fun showToast(isFavorite: Boolean){
+        toast?.cancel()
+
+        toast = when(isFavorite){
+            true -> Toast.makeText(context, "Đã thêm sản phẩm vào danh sách Yêu thích", Toast.LENGTH_SHORT)
+
+            else -> Toast.makeText(context, "Đã xóa sản phẩm khỏi danh sách Yêu thích", Toast.LENGTH_SHORT)
+        }
+        toast?.show()
     }
 
 }

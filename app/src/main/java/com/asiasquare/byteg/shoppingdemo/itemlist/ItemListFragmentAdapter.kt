@@ -3,6 +3,7 @@ package com.asiasquare.byteg.shoppingdemo.itemlist
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,14 +14,13 @@ import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
 import com.asiasquare.byteg.shoppingdemo.databinding.GridViewItemListBinding
 
 
-
 class ItemListFragmentAdapter(private val onClickListener: OnClickListener):ListAdapter <LocalItem, ItemListFragmentAdapter.ItemListViewHolder>(DiffCallback) {
 
 
     class ItemListViewHolder (private val binding: GridViewItemListBinding):
         RecyclerView.ViewHolder(binding.root)  {
 
-        val btnFavorite= binding.imageViewAddFavorite
+        val btnFavorite= binding.ivAddFavorite
         @SuppressLint("SetTextI18n")
         fun bind(item: LocalItem) {
             binding.apply {
@@ -31,10 +31,11 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
                 tensanpham.text = item.itemName
                 giasanpham.text= "€" + item.itemPrice.toString()
 
-
+                when {
+                    item.itemFavorite -> ivAddFavorite.setImageResource(R.drawable.timdo24)
+                    else -> ivAddFavorite.setImageResource(R.drawable.timden24)
+                }
             }
-
-
         }
         companion object{
             fun from(parent: ViewGroup): ItemListViewHolder{
@@ -60,7 +61,6 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
 
         holder.btnFavorite.setOnClickListener {
             onClickListener.onAddFavoriteClick(item)
-
         }
     }
 
@@ -84,4 +84,3 @@ class ItemListFragmentAdapter(private val onClickListener: OnClickListener):List
 
     }
 }
-

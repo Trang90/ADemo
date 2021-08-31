@@ -18,6 +18,7 @@
         tools:listitem="@layout/grid_view_favorite_item"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         />
+
     <RelativeLayout
 
         android:id="@+id/empty_view"
@@ -58,4 +59,5 @@
 
 
     </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

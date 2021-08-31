@@ -1,6 +1,7 @@
 package com.asiasquare.byteg.shoppingdemo.cart
 
 import android.annotation.SuppressLint
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.asiasquare.byteg.shoppingdemo.database.items.ShoppingBasketItem
 import com.asiasquare.byteg.shoppingdemo.databinding.GirdViewCartItemBinding
+import com.asiasquare.byteg.shoppingdemo.util.round
 
 class CartFragmentAdapter(private val onClickListener: OnClickListener) : ListAdapter<ShoppingBasketItem, CartFragmentAdapter.CartViewHolder>(DiffCallback){
 
@@ -21,13 +23,31 @@ class CartFragmentAdapter(private val onClickListener: OnClickListener) : ListAd
 
         @SuppressLint("SetTextI18n")
         fun bind(cart: ShoppingBasketItem) {
+            val itemPrice = cart.itemPrice
             val amount = cart.itemAmount
+            val priceItems = (itemPrice * amount).round(2)
+            val priceDiscounted = (cart.itemDiscountedPrice * cart.itemAmount).round(2)
+
+
             binding.apply {
-                binding.anhItemGioHang.load(cart.itemImageSource)
-                tenItemGioHang.text = cart.itemName
-                giaItemGioHang.text = "€" + cart.totalPrice.toString()
-                khoiLuongItemGioHang.text = "Khối lượng: "+ cart.itemWeight
+                ivPicture.load(cart.itemImageSource)
+                tvName.text = cart.itemName
+                tvWeight.text = "Khối lượng: "+ cart.itemWeight
+                tvPrice.text = "€${priceItems}"
                 tvItemAmount.text = cart.itemAmount.toString()
+
+                if (priceDiscounted != 0.0) {
+
+                    tvPrice.text= "€${priceItems}"
+                    tvPrice.paintFlags = tvPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    tvDiscountedPrice.text= "€${priceDiscounted}"
+                    tvDiscountedPrice.visibility = View.VISIBLE
+                } else {
+                    tvDiscountedPrice.visibility = View.INVISIBLE
+                    tvPrice.text = "€${priceItems}"
+                    tvPrice.paintFlags = tvPrice.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                }
+
                 when {
                     amount < 2 -> {
                         buttonGiam.visibility = View.GONE
@@ -65,6 +85,9 @@ class CartFragmentAdapter(private val onClickListener: OnClickListener) : ListAd
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+        holder.itemView.setOnClickListener {
+            onClickListener.onItemClick(item)
+        }
 
         holder.btDelete.setOnClickListener {
             onClickListener.onDeleteClick(item)
@@ -91,6 +114,7 @@ class CartFragmentAdapter(private val onClickListener: OnClickListener) : ListAd
 
     /** Simple ClickListener. Return cart Object info when user click **/
     interface OnClickListener{
+        fun onItemClick(cart: ShoppingBasketItem)
         fun onDeleteClick(cart: ShoppingBasketItem)
         fun onAddClick(cart: ShoppingBasketItem)
         fun onMinusClick(cart: ShoppingBasketItem)

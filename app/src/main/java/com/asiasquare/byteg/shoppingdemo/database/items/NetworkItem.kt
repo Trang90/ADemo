@@ -26,7 +26,7 @@ data class NetworkItem(
     @Json(name = "xuatXu")
     val itemOrigin: String
 ) : Parcelable {
-    fun asLocalItem() : LocalItem {
+    fun asLocalItem(favorite: Boolean) : LocalItem {
         return LocalItem(
             itemId = itemId,
             itemBrandId = itemBrandId,
@@ -37,7 +37,8 @@ data class NetworkItem(
             itemWeight = itemWeight,
             itemDescription = itemDescription,
             itemBrand = itemBrand,
-            itemOrigin = itemOrigin
+            itemOrigin = itemOrigin,
+            itemFavorite = favorite
         )
     }
     fun asDomainItem() : Item {
@@ -69,8 +70,8 @@ fun NetworkItemContainer.asLocalItems() : List<LocalItem>{
             itemWeight = it.itemWeight,
             itemDescription = it.itemDescription,
             itemBrand = it.itemBrand,
-            itemOrigin = it.itemOrigin
+            itemOrigin = it.itemOrigin,
+            itemFavorite = false
         )
     }
 }
-

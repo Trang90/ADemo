@@ -11,18 +11,26 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.asiasquare.byteg.shoppingdemo.database.items.ShoppingBasketItem
 import com.asiasquare.byteg.shoppingdemo.databinding.FragmentCartBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collect
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 class CartFragment : Fragment(), CartFragmentAdapter.OnClickListener {
 
     /** binding will only exist between onAttach and on Detach **/
     private var _binding : FragmentCartBinding? = null
     private val binding get() = _binding!!
+
+    var tongtien = 0.0
+    private var totalPrice = 0.0
+
+    private val nf: NumberFormat = DecimalFormat("##.###")
 
     /**
      * Create viewModel, provide application to Factory to create an AndroidViewModel class
@@ -41,6 +49,7 @@ class CartFragment : Fragment(), CartFragmentAdapter.OnClickListener {
         // Inflate the layout for this fragment
         _binding = FragmentCartBinding.inflate(inflater,container,false)
 
+
         /** Create recyclerView adapter and define OnClickListener **/
         val adapter = CartFragmentAdapter(this)
         binding.recyclerViewGioHang.adapter = adapter
@@ -49,7 +58,6 @@ class CartFragment : Fragment(), CartFragmentAdapter.OnClickListener {
 //            Toast.makeText(context, it.textTenSanPham, Toast.LENGTH_SHORT).show()
 //        })
 
-        binding.recyclerViewGioHang.adapter = adapter
 
         /** Update data to adapter **/
         viewModel.cartList.observe(viewLifecycleOwner, Observer {
@@ -57,9 +65,36 @@ class CartFragment : Fragment(), CartFragmentAdapter.OnClickListener {
                 if (it.isEmpty()) {
                     binding.emptyView.visibility = View.VISIBLE
                     binding.buttonDatHang.visibility = View.GONE
+                    binding.tongTien.visibility = View.GONE
+
                 } else
                     binding.emptyView.visibility = View.GONE
                 adapter.submitList(it)
+
+                for (i in it.indices) {
+                    tongtien = if (it[i].itemDiscountedPrice !== 0.0) {
+                        it[i].itemDiscountedPrice * it[i].itemAmount
+                    } else {
+                        it[i].itemPrice * it[i].itemAmount
+                    }
+                    totalPrice += tongtien
+                }
+
+                val tongTienDonHangString = "Tổng số tiền: €" + nf.format(totalPrice)
+                binding.tongTien.text = tongTienDonHangString
+                totalPrice = 0.0
+
+            }
+
+        })
+
+        /** Navigate to detail by Id **/
+        viewModel.navigateToDetail.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                this.findNavController().navigate(
+                    CartFragmentDirections.actionCartFragmentToDetailFragment(it)
+                )
+                viewModel.onNavigationComplete()
             }
         })
 
@@ -95,6 +130,15 @@ class CartFragment : Fragment(), CartFragmentAdapter.OnClickListener {
                 }
             }
         }
+
+        /** Navigate to order **/
+        binding.buttonDatHang.setOnClickListener {
+            if (null != it) {
+                this.findNavController().navigate(
+                    CartFragmentDirections.actionCartFragmentToPaymentMethodFragment()
+                )}
+        }
+
         return binding.root
     }
 
@@ -102,6 +146,10 @@ class CartFragment : Fragment(), CartFragmentAdapter.OnClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClick(cart: ShoppingBasketItem) {
+        viewModel.onDetailClick(cart)
     }
 
 

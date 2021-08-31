@@ -46,8 +46,7 @@ data class ShoppingBasketItem(
             itemWeight = itemWeight,
             itemDescription = itemDescription,
             itemBrand = itemBrand,
-            itemOrigin = itemOrigin,
-            //itemAmount = itemAmount
+            itemOrigin = itemOrigin
         )
     }
 }

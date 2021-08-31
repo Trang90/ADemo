@@ -11,7 +11,7 @@ import kotlinx.coroutines.withContext
 
 class CartRepository(private val database: AsiaDatabase){
 
-    val cartItems: LiveData<List<ShoppingBasketItem>> = database.basketItemDao.getAllItemsInBasket()
+    val cartItems: LiveData<MutableList<ShoppingBasketItem>> = database.basketItemDao.getAllItemsInBasket()
 
     val cartLiveAmountItemCount: LiveData<Int> = database.basketItemDao.getLiveAmountItemsCount()
 
@@ -43,6 +43,17 @@ class CartRepository(private val database: AsiaDatabase){
             item = database.basketItemDao.get(id)
         }
         return item
+    }
+
+    fun getAllItemsAsString() : String{
+        var result : String = ""
+        if(!cartItems.value.isNullOrEmpty()){
+            val itemList = cartItems.value!!.toList()
+            for(item in itemList){
+                result += "( ${item.itemName} : ${item.itemAmount} )"
+            }
+        }
+        return result
     }
 
 

@@ -22,7 +22,7 @@ interface ShoppingBasketItemDao {
     fun clearShoppingBasket()
 
     @Query(value = "SELECT * FROM shopping_basket_table")
-    fun getAllItemsInBasket() : LiveData<List<ShoppingBasketItem>>
+    fun getAllItemsInBasket() : LiveData<MutableList<ShoppingBasketItem>>
 
     @Query(value = "SELECT * from shopping_basket_table WHERE itemId = :id")
     fun get(id : Int) : ShoppingBasketItem?

@@ -62,6 +62,16 @@ class ItemRepository(private val database: AsiaDatabase) {
     }
 
     /**
+     * Update item in local database
+     */
+    suspend fun updateLocalItem(item: LocalItem){
+        withContext(Dispatchers.IO){
+            database.itemDao.update(item)
+            Log.d("REPO FAV", "Successful update item")
+        }
+    }
+
+    /**
      * Add all network items to local database
      */
     suspend fun addListLocalItem(items: List<NetworkItem>){

@@ -24,8 +24,6 @@
     <color name="secondary_800">#d71e27</color>
     <color name="secondary_900">#c80e1a</color>
 
-
-
     <color name="primaryColor">#ffa851</color>
     <color name="primaryLightColor">#ffda80</color>
     <color name="primaryDarkColor">#c87921</color>
@@ -34,7 +32,9 @@
     <color name="secondaryDarkColor">#c50b28</color>
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#000000</color>
-
     <color name="colorAccent">#ffa751</color>
+
+
+    <color name="bgLogo">#f67122</color>
 
 </resources>
