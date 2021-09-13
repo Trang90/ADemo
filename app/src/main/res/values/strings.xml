@@ -1,91 +1,103 @@
 <resources>
     <string name="app_name">AsiaSquareShoppingDemo</string>
     <string name="home">Home</string>
-    <string name="favorite">Favorite</string>
-    <string name="cart">Cart</string>
-    <string name="search">Search</string>
+    <string name="favorite">Yêu Thích</string>
+    <string name="cart">Giỏ Hàng</string>
+    <string name="search">Tìm Kiếm</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Title text for the empty view, which describes the empty dog house image [CHAR LIMIT=50] -->
-    <string name="empty_view_title_shopping_cart">Your shopping cart is empty ...</string>
-    <string name="empty_view_tilte_favorite">Favorites list is empty ...</string>
+    <string name="empty_view_title_shopping_cart">Giỏ hàng của bạn đang trống...</string>
+    <string name="empty_view_tilte_favorite">Danh sách yêu thích đang trống...</string>
 
     <!-- Text in DetailFragment-->
-    <string name="thong_tin_san_pham">Product information</string>
-    <string name="mo_ta_san_pham">Product Description</string>
-    <string name="them_vao_gio_hang">Add to cart</string>
-    <string name="tien_hang_dat_hang">Order</string>
+    <string name="thong_tin_san_pham">Thông tin sản phẩm</string>
+    <string name="mo_ta_san_pham">Mô tả sản phẩm</string>
+    <string name="them_vao_gio_hang">Thêm vào giỏ hàng</string>
+    <string name="tien_hang_dat_hang">Tiến hành đặt hàng</string>
 
     <!-- Text in SearchFragment-->
-    <string name="no_match_search">No matches, please try again...</string>
+    <string name="no_match_search">Không có kết quả phù hợp, vui lòng thử lại...</string>
 
     <!-- Text in Payment-->
-    <string name="phuong_thuc_thanh_toan">Payment method:</string>
-    <string name="thanh_toan_tin_dung">Pay by credit card</string>
-    <string name="thanh_toan_cnc">Click &amp; Collect\n(Pay at the store)</string>
+    <string name="phuong_thuc_thanh_toan">Phương thức thanh toán:</string>
+    <string name="thanh_toan_tin_dung">Thanh toán bằng thẻ tín dụng</string>
+    <string name="thanh_toan_cnc">Click &amp; Collect\n(Thanh toán tại cửa hàng)</string>
 
-    <string name="chon_ngay_lay_hang">Choose pick up date</string>
+    <string name="chon_ngay_lay_hang">Chọn ngày lấy hàng</string>
     <string name="_00_00">00:00</string>
 
-    <string name="thong_tin_thanh_toan">Billing Information</string>
-    <string name="Thanh_toan">Make a payment</string>
-    <string name="tro_ve_cua_hang">BACK TO THE STORE</string>
-    <string name="tiep_tuc_dat_hang">Continue to order</string>
-    <string name="m_v_ng">Zip code</string>
-    <string name="ti_p_t_c">Continue</string>
-    <string name="thanh_pho">City</string>
-    <string name="email_vn">Email</string>
-    <string name="ho_va_ten">Name</string>
+    <string name="thong_tin_thanh_toan">Thông tin thanh toán</string>
+    <string name="Thanh_toan">Tiến hành thanh toán</string>
+    <string name="tro_ve_cua_hang">TRỞ VỀ CỬA HÀNG</string>
+    <string name="tiep_tuc_dat_hang">Tiếp tục đặt hàng</string>
+    <string name="m_v_ng">Mã vùng</string>
+    <string name="ti_p_t_c">Tiếp tục</string>
+    <string name="thanh_pho">Thành phố</string>
+    <string name="email_vn">Địa chỉ email</string>
+    <string name="ho_va_ten">Họ và tên</string>
     <string name="customer_information">Customer information</string>
-    <string name="quay_ve_cua_hang">Back to the store</string>
-    <string name="hoan_tat_thanh_toan">Complete payment</string>
+    <string name="quay_ve_cua_hang">Quay về cửa hàng</string>
+    <string name="hoan_tat_thanh_toan">Hoàn tất thanh toán</string>
 
+    <!-- Text in Drawer Payment Method-->
+    <string name="thanh_toan_bang_the_tin_dung">Thanh toán bằng thẻ tín dụng.</string>
+    <string name="visa_master">Visa / Mastercard</string>
 
-
-    <string name="thong_tin_thanh_toan_body">You can now pay by Paypal for the address :</string>
+    <string name="thong_tin_thanh_toan_body">Thanh toán</string>
     <string name="paypal_email">asiasquare.com@gmail.com</string>
-    <string name="thong_tin_thanh_toan_body_paypal">In the future, we will provide more payment facilities for your convenience.</string>
-    <string name="thong_tin_thanh_toan_body_cac">You can order and pay when picking up goods at the store at address:</string>
-    <string name="thong_tin_thanh_toan_tien_mat">Please pay when picking up the goods at the address:</string>
+    <string name="thong_tin_thanh_toan_body_paypal">Trong thời gian tới chúng tôi sẽ cung cấp thêm các tiện ích thanh toán để tiện cho quý khách.</string>
+    <string name="thong_tin_thanh_toan_body_cac">Quý khách có thể đặt hàng và thanh toán khi lấy hàng tại cửa hàng tại địa chỉ:</string>
+    <string name="thong_tin_thanh_toan_tien_mat">Quý khách vui lòng thanh toán khi lấy hàng tại địa chỉ:</string>
     <string name="dia_chi_cua_hang">Feldmochinger Str. 36\n80992 München</string>
-    <string name="thoi_gian_hoat_dong_t2_t6">Monday – Friday: 09.00 – 17.00</string>
-    <string name="thoi_gian_hoat_dong_t7">Saturday        : 08.00 – 20.00</string>
-    <string name="thoi_gian_hoat_dong_cn">Sunday     : closed</string>
+    <string name="thoi_gian_hoat_dong_t2_t6">Thứ 2 – Thứ 6: 09.00 – 17.00</string>
+    <string name="thoi_gian_hoat_dong_t7">Thứ 7        : 08.00 – 20.00</string>
+    <string name="thoi_gian_hoat_dong_cn">Chủ nhật     : Đóng cửa</string>
 
-    <string name="thong_tin_giao_hang"> Shipping fee</string>
-    <string name="thong_tin_giao_hang_body_duoi_50">For orders under 50 EUR, please pay 5.99 EUR shipping fee.</string>
-    <string name="thong_tin_giao_hang_body_tren_50">For orders of 50 EUR or more, your order will receive free shipping.</string>
-    <string name="thong_tin_giao_hang_body_lien_he">If you have specific requirements regarding the shipping process and time, please contact customer service directly.</string>
+    <!-- Text in Drawer Shipping-->
+    <string name="thong_tin_giao_hang"> Chi phí vận chuyển</string>
+    <string name="thong_tin_giao_hang_body_duoi_50">Đối với đơn hàng <b>dưới 50 EUR</b>, quý khách vui lòng thanh toán 5,99 EUR chi phí vận chuyển.</string>
+    <string name="thong_tin_giao_hang_body_tren_50">Đối với đơn hàng <b>từ 50 EUR</b> trở lên, đơn hàng của quý khách sẽ được miễn phí vận chuyển.</string>
+    <string name="thong_tin_giao_hang_body_lien_he">Nếu quý khách có yêu cầu riêng về quá trình và thời gian vận chuyển, xin vui lòng liên hệ trực tiếp với bộ phận chăm sóc khách hàng.</string>
 
-    <string name="thong_tin_lien_he">Customer Service</string>
-    <string name="thong_tin_lien_he_cam_on">Thank you very much for using our Asia Square app.</string>
+    <!-- Text in Drawer Customer Service-->
+    <string name="thong_tin_lien_he">Chăm sóc khách hàng</string>
+    <string name="thong_tin_lien_he_cam_on">Trân trọng cảm ơn quý khách đã sử dụng app Asia Square của chúng tôi.</string>
+    <string name="thong_tin_lien_he_bo_phan_cskh">Bộ phận chăm sóc khách hàng </string>
     <string name="thong_tin_lien_he_email">Email: <u>asiasquare.com@gmail.com</u></string>
-    <string name="thong_tin_lien_he_hotline">Hotline:</string>
+    <string name="thong_tin_lien_he_hotline">Đường dây nóng:</string>
     <string name="thong_tin_lien_he_hotline_one">+49-89-44354936</string>
     <string name="thong_tin_lien_he_hotline_two">+49-1522-4880909</string>
     <string name="thong_tin_lien_he_hotline_three">+49-1578-6807618</string>
-    <string name="thong_tin_lien_he_thoi_gian_title">with uptime</string>
-    <string name="thong_tin_lien_he_thoi_gian_body_first_option">Monday – Saturday: 09.00 – 17.00</string>
-    <string name="thong_tin_lien_he_thoi_gian_body_second_option">Monday – Saturday: 08.00 – 20.00</string>
-    <string name="thong_tin_lien_he_end">ready to receive your information, feedback and questions. </string>
+    <string name="thong_tin_lien_he_thoi_gian_title">với thời gian hoạt động</string>
+    <string name="thong_tin_lien_he_thoi_gian_body_first_option">Thứ 2 – Thứ 7: 09.00 – 17.00</string>
+    <string name="thong_tin_lien_he_thoi_gian_body_second_option">Thứ 2 – Thứ 7: 08.00 – 20.00</string>
+    <string name="thong_tin_lien_he_end">sẵn sàng tiếp nhận thông tin, phản hồi và thắc mắc của quý khách. </string>
 
-    <string name="chuyen_tien_vao_tai_khoan">You continue to order to complete the order, then log in at Paypal and transfer money to your accoun:</string>
-    <string name="huong_dan_thanh_toan_paypal"><u>Paypal payment instructions </u></string>
-    <string name="dia_chi">Delivery address</string>
-    <string name="sdt">Phone number</string>
-    <string name="thanh_toan_thanh_cong">Successful payment confirmation!</string>
-    <string name="xoa_thong_tin">Delete information?</string>
-    <string name="xoa_thong_tin_detail">Confirm deletion of this shipping information?</string>
-    <string name="xac_nhan">Confirm</string>
-    <string name="quay_lai">Back</string>
-    <string name="visa_master">Visa / Mastercard</string>
+    <string name="chuyen_tien_vao_tai_khoan">Quý khách tiếp tục đặt hàng để hoàn tất đơn hàng, sau đó đăng nhập tại Paypal và chuyển tiền vào tài khoản:</string>
+    <string name="huong_dan_thanh_toan_paypal"><u>Hướng dẫn thanh toán Paypal</u></string>
+    <string name="dia_chi">Địa chỉ giao hàng</string>
+    <string name="sdt">Số điện thoại</string>
+    <string name="thanh_toan_thanh_cong">Xác nhận thanh toán thành công!</string>
+    <string name="xoa_thong_tin">Xóa thông tin?</string>
+    <string name="xoa_thong_tin_detail">Xác nhận xóa thông tin giao hàng này?</string>
+    <string name="xac_nhan">Xác nhận</string>
+    <string name="quay_lai">Quay lại</string>
 
     <string name="tab">\u0009</string>
     <string name="double_tab">\u0009\u0009</string>
     <string name="triple_tab">\u0009\u0009\u0009</string>
     <string name="quad_tab">\u0009\u0009\u0009\u0009</string>
+
+    //Navigation Drawer
+    <string name="thong_tin_ca_nhan">Thông tin cá nhân</string>
+    <string name="hinh_thuc_thanh_toan">Hình Thức Thanh Toán</string>
+    <string name="cac_don_hang">Các Đơn Hàng</string>
+    <string name="giao_hang">Vận Chuyển</string>
+    <string name="chinh_sach_doi_tra">Đặt hàng theo yêu cầu</string>
+    <string name="lien_he">Thông tin liên hệ</string>
 
 
 </resources>

@@ -8,6 +8,8 @@ import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
 import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
 import com.asiasquare.byteg.shoppingdemo.database.items.LocalItem
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
+import com.asiasquare.byteg.shoppingdemo.database.items.ShoppingBasketItem
+import com.asiasquare.byteg.shoppingdemo.repository.CartRepository
 import com.asiasquare.byteg.shoppingdemo.repository.FavoriteRepository
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -17,14 +19,17 @@ import kotlinx.coroutines.launch
 class
 FavoriteFragmentViewModel(application: Application) : AndroidViewModel(application) {
 
+
     private val _navigateToDetail = MutableLiveData<LocalItem?>()
     val navigateToDetail : MutableLiveData<LocalItem?>
         get() = _navigateToDetail
 
     private val database = AsiaDatabase.getInstance(application)
     private val favoriteItemRepository = FavoriteRepository(database)
+    private val cartItemRepository = CartRepository(database)
 
     val favoriteList = favoriteItemRepository.favoriteItems
+    private var itemAmount: Int = 1
 
     private val tasksEventChannel = Channel<TasksEvent>()
     val tasksEvent = tasksEventChannel.receiveAsFlow()
@@ -52,8 +57,29 @@ FavoriteFragmentViewModel(application: Application) : AndroidViewModel(applicati
         data class ShowUndoDeleteTaskMessage(val task: FavoriteItem) : TasksEvent()
     }
 
-    fun onDetailClick( item: FavoriteItem){
+    fun onDetailClick(item: FavoriteItem){
         _navigateToDetail.value = item.asDomainItem().asLocalItem()
+    }
+
+
+
+    fun onCartClicking(favorite: FavoriteItem) {
+        viewModelScope.launch {
+            //Try to get this item from current cart
+            val item = cartItemRepository.getCartItemById(favorite.asDomainItem().asCartItem(itemAmount).itemId)
+
+            //Case: already have this item in cart
+            if (item != null) {
+                //update the item amount
+                itemAmount = item.itemAmount
+                cartItemRepository.updateCartItem(favorite.asDomainItem().asCartItem(itemAmount))
+                Log.d("Cart viewmodel", "So Luong da duoc update")
+
+            } else
+            //Add this new item to the cart
+                cartItemRepository.addCartItem(favorite.asDomainItem().asCartItem(itemAmount))
+            Log.d("Cart viewmodel","Them $itemAmount Item vao Shopping Basket")
+        }
     }
 
     fun onNavigationComplete(){

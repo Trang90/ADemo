@@ -2,7 +2,6 @@ package com.asiasquare.byteg.shoppingdemo.search
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
@@ -10,13 +9,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.asiasquare.byteg.shoppingdemo.R
-import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
 import com.asiasquare.byteg.shoppingdemo.database.items.LocalItem
-import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
 import com.asiasquare.byteg.shoppingdemo.databinding.FragmentSearchBinding
-import com.asiasquare.byteg.shoppingdemo.favorite.FavoriteFragmentAdapter
-import com.asiasquare.byteg.shoppingdemo.favorite.FavoriteFragmentDirections
 import com.asiasquare.byteg.shoppingdemo.util.onQueryTextChanged
+
 
 class SearchFragment : Fragment(), SearchFragmentAdapter.OnClickListener {
 
@@ -67,7 +63,7 @@ class SearchFragment : Fragment(), SearchFragmentAdapter.OnClickListener {
 
             }
         })
-        /** weird behavior **/
+        /** show Toast when add item into Favorite **/
         viewModel.isFavorite.observe(viewLifecycleOwner, Observer {
             showToast(it)
 
@@ -107,6 +103,8 @@ class SearchFragment : Fragment(), SearchFragmentAdapter.OnClickListener {
 
 
         searchView.onQueryTextChanged { viewModel.searchQuery.value = it}
+
+
 
     }
 

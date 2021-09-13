@@ -1,7 +1,9 @@
 package com.asiasquare.byteg.shoppingdemo.favorite
 
 import android.annotation.SuppressLint
+import android.graphics.Paint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
@@ -21,12 +23,27 @@ class FavoriteFragmentAdapter (private val onClickListener: OnClickListener): Li
         /** Bind item to View, load image here using Coil */
 
         val btDelete = binding.buttonXoaYeuThich
+        val btAddToCart = binding.buttonThem
 
-        fun bind (favorite: FavoriteItem){
-            binding.anhItemYeuThich.load(favorite.itemImageSource)
-            binding.tenItemYeuThich.text = favorite.itemName
-            binding.giaItemYeuThich.text = favorite.itemPrice.toString()
-            binding.khoiLuongItemYeuThich.text = favorite.itemWeight
+        @SuppressLint("SetTextI18n")
+        fun bind (favorite: FavoriteItem) {
+            val priceDiscounted = favorite.itemDiscountedPrice
+            binding.apply {
+                anhItemYeuThich.load(favorite.itemImageSource)
+                tenItemYeuThich.text = favorite.itemName
+                khoiLuongItemYeuThich.text = favorite.itemWeight
+
+                if (priceDiscounted != 0.0) {
+                    giaItemYeuThich.text = "€" + favorite.itemPrice.toString()
+                    giaItemYeuThich.paintFlags = giaItemYeuThich.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    binding.tvDiscountedPrice.text = "€${favorite.itemDiscountedPrice}"
+                    binding.tvDiscountedPrice.visibility = View.VISIBLE
+                } else {
+                    binding.tvDiscountedPrice.visibility = View.INVISIBLE
+                    giaItemYeuThich.text = "€" + favorite.itemPrice.toString()
+                    giaItemYeuThich.paintFlags = giaItemYeuThich.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                }
+            }
         }
 
         /** inflate the small item in recyclerView **/
@@ -57,6 +74,10 @@ class FavoriteFragmentAdapter (private val onClickListener: OnClickListener): Li
             onClickListener.onDeleteClick(item)
         }
 
+        holder.btAddToCart.setOnClickListener {
+            onClickListener.addToCard(item)
+        }
+
     }
 
     companion object DiffCallback: DiffUtil.ItemCallback<FavoriteItem>(){
@@ -76,6 +97,7 @@ class FavoriteFragmentAdapter (private val onClickListener: OnClickListener): Li
     interface OnClickListener{
         fun onItemClick(favorite: FavoriteItem)
         fun onDeleteClick(favorite: FavoriteItem)
+        fun addToCard (favorite: FavoriteItem)
     }
 
 

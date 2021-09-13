@@ -72,7 +72,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:padding="8dp"
-            android:text="@string/them_vao_gio_hang"
+            android:text="Thêm vào giỏ"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/button_xoa_yeu_thich"
@@ -93,12 +93,12 @@
 
         <!--  //TODO SALE-->
         <TextView
-            android:id="@+id/gia_khuyen_mai_yeu_thich"
+            android:id="@+id/tvDiscountedPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="5dp"
-            tools:text="40.000"
+            android:text="40.000"
             android:visibility="invisible"
             android:textColor="#fa3223"
             app:layout_constraintStart_toEndOf="@+id/gia_item_yeu_thich"

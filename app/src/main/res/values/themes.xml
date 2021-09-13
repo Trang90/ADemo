@@ -6,12 +6,18 @@
         <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondaryColor</item>
         <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name= "colorOnPrimarySurface">@color/prime_500</item>
+        <item name="colorControlActivated">@color/prime_500</item>
+
     </style>
 
 
@@ -34,10 +40,17 @@
 
         <!-- The color of the label when it is collapsed and the text field is active -->
         <item name="hintTextColor">@color/prime_500</item>
-        ->
+
     </style>
 
     <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
         <item name="cornerSize">10%</item>
     </style>
+
+    <!-- Text size of Drawer -->
+    <style name="NavigationDrawerStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="android:textSize">@dimen/text_size_16</item><!-- text size in menu-->
+    </style>
+
+
 </resources>

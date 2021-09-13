@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".drawer.ShippingDrawerFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_giao_hang_title"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:textStyle="bold"
+            android:paddingStart="10dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tilte_size_menu"
+            android:text="@string/thong_tin_giao_hang"/>
+
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:id="@+id/tv_giao_hang_first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:textSize="@dimen/description"
+            android:paddingEnd="@dimen/dp_10"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:background="@drawable/textview_border"
+            />
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:id="@+id/tv_giao_hang_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:textSize="@dimen/description"
+            android:paddingEnd="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:background="@drawable/textview_border"/>
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:id="@+id/tv_giao_hang_third"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:textSize="@dimen/description"
+            android:paddingEnd="@dimen/dp_10"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:background="@drawable/textview_border"/>
+
+    </LinearLayout>
+
+</FrameLayout>

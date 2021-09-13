@@ -2,11 +2,9 @@ package com.asiasquare.byteg.shoppingdemo.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
 import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
 import com.asiasquare.byteg.shoppingdemo.database.items.ShoppingBasketItem
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class CartRepository(private val database: AsiaDatabase){

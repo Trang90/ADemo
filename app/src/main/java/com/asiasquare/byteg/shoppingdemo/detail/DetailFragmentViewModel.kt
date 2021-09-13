@@ -3,10 +3,10 @@ package com.asiasquare.byteg.shoppingdemo.detail
 import android.R
 import android.app.Application
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.*
 import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
+import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
 import com.asiasquare.byteg.shoppingdemo.database.items.LocalItem
 import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
 import com.asiasquare.byteg.shoppingdemo.database.items.ShoppingBasketItem

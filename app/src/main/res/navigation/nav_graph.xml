@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.detail.DetailFragment"
-        android:label="Detail"
+        android:label="Chi Tiết"
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="selectedItem"
@@ -41,8 +41,8 @@
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.cart.CartFragment"
-        android:label="Shopping Cart"
-        tools:layout="@layout/fragment_cart">
+        android:label="Giỏ Hàng"
+        tools:layout="@layout/fragment_cart" >
 
         <action
             android:id="@+id/action_cartFragment_to_paymentMethodFragment"
@@ -54,7 +54,7 @@
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.favorite.FavoriteFragment"
-        android:label="Favorite"
+        android:label="Yêu Thích"
         tools:layout="@layout/fragment_favorite">
         <action
             android:id="@+id/action_favoriteFragment_to_detailFragment"
@@ -63,7 +63,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.search.SearchFragment"
-        android:label="Search"
+        android:label="Tìm Kiếm"
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_detailFragment"
@@ -72,7 +72,7 @@
     <fragment
         android:id="@+id/paymentMethodFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.payment.method.PaymentMethodFragment"
-        android:label="Payment Method"
+        android:label="Thanh toán"
         tools:layout="@layout/fragment_payment_method">
         <action
             android:id="@+id/action_paymentMethodFragment_to_customerListFragment"
@@ -87,8 +87,8 @@
     <fragment
         android:id="@+id/customerListFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.payment.customerlist.CustomerListFragment"
-        android:label="fragment_customer_list"
-        tools:layout="@layout/fragment_customer_list" >
+        android:label="Hồ sơ"
+        tools:layout="@layout/fragment_customer_list">
         <action
             android:id="@+id/action_customerListFragment_to_newCustomerFragment"
             app:destination="@id/newCustomerFragment" />
@@ -99,7 +99,7 @@
     <fragment
         android:id="@+id/newCustomerFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.payment.newcustomer.NewCustomerFragment"
-        android:label="New Customer"
+        android:label="Thông tin đặt hàng"
         tools:layout="@layout/fragment_new_customer">
         <action
             android:id="@+id/action_newCustomerFragment_to_customerListFragment"
@@ -117,10 +117,25 @@
     <fragment
         android:id="@+id/orderFragment"
         android:name="com.asiasquare.byteg.shoppingdemo.payment.order.OrderFragment"
-        android:label="Order"
+        android:label="Thông tin đặt hàng"
         tools:layout="@layout/fragment_order">
         <action
             android:id="@+id/action_orderFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/customerServiceDrawerFragment"
+        android:name="com.asiasquare.byteg.shoppingdemo.drawer.CustomerServiceDrawerFragment"
+        android:label="Thông Tin Liên Hệ"
+        tools:layout="@layout/fragment_customer_service_drawer" />
+    <fragment
+        android:id="@+id/paymentMethodDrawerFragment"
+        android:name="com.asiasquare.byteg.shoppingdemo.drawer.PaymentMethodDrawerFragment"
+        android:label="Hình Thức Thanh Toán"
+        tools:layout="@layout/fragment_payment_method_drawer" />
+    <fragment
+        android:id="@+id/shippingDrawerFragment"
+        android:name="com.asiasquare.byteg.shoppingdemo.drawer.ShippingDrawerFragment"
+        android:label="Vận Chuyển"
+        tools:layout="@layout/fragment_shipping_drawer" />
 </navigation>

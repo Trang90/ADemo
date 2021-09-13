@@ -5,10 +5,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.asiasquare.byteg.shoppingdemo.database.AsiaDatabase
 import com.asiasquare.byteg.shoppingdemo.database.items.LocalItem
-import com.asiasquare.byteg.shoppingdemo.database.items.NetworkItem
-import com.asiasquare.byteg.shoppingdemo.itemlist.ListStatus
 import com.asiasquare.byteg.shoppingdemo.repository.FavoriteRepository
-import com.asiasquare.byteg.shoppingdemo.repository.ItemRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
@@ -17,12 +14,12 @@ class SearchFragmentViewModel (application: Application) : AndroidViewModel(appl
 
     private val database = AsiaDatabase.getInstance(application)
     private val favoriteItemRepository = FavoriteRepository(database)
-    private val itemRepository = ItemRepository(database)
 
     val searchQuery = MutableStateFlow("")
     private val searchFlow = searchQuery.flatMapLatest {
         database.itemDao.getSearchItems(it)
     }
+
 
     val searchItems = searchFlow.asLiveData()
 
@@ -37,9 +34,7 @@ class SearchFragmentViewModel (application: Application) : AndroidViewModel(appl
         get() = _isFavorite
 
 
-    init {
-        //getData()
-    }
+
 
 //    private fun getData(){
 //        viewModelScope.launch {
@@ -67,14 +62,13 @@ class SearchFragmentViewModel (application: Application) : AndroidViewModel(appl
         _navigateToDetail.value = null
     }
 
-        fun onFavoriteClicking(item: LocalItem) {
+    fun onFavoriteClicking(item: LocalItem) {
+
         viewModelScope.launch {
-//            _isFavorite.value =
-//                favoriteItemRepository.getFavoriteItemById(item.asDomainItem().itemId) !== null
             val isCurrentFavorite =
                 favoriteItemRepository.getFavoriteItemById(item.asDomainItem().itemId) !== null
             if(isCurrentFavorite){
-                Log.d("Search viewmodel","Item is added into Favorite")
+                Log.d("ItemList viewmodel","Item is added into Favorite")
 
                 favoriteItemRepository.deleteFavoriteItem(item.asDomainItem().asFavoriteItem())
                 _isFavorite.value = false
@@ -82,8 +76,10 @@ class SearchFragmentViewModel (application: Application) : AndroidViewModel(appl
             }else
             {
                 favoriteItemRepository.addFavoriteItem(item.asDomainItem().asFavoriteItem())
+
                 _isFavorite.value = true
             }
+
         }
     }
 

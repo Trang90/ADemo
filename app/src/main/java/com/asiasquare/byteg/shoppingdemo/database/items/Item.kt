@@ -17,7 +17,7 @@ data class Item(
     val itemBrand: String,
     val itemOrigin: String
 ) : Parcelable{
-    fun asLocalItem() : LocalItem {
+    fun asLocalItem(): LocalItem {
         return LocalItem(
             itemId = itemId,
             itemBrandId = itemBrandId,
@@ -59,8 +59,7 @@ data class Item(
             itemDescription = itemDescription,
             itemBrand = itemBrand,
             itemOrigin = itemOrigin,
-            itemAmount = amount,
-            totalPrice = Math.round(amount * itemPrice * 100.0) / 100.0
+            itemAmount = amount
         )
     }
 

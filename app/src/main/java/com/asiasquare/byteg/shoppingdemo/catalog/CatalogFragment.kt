@@ -1,14 +1,20 @@
 package com.asiasquare.byteg.shoppingdemo.catalog
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import android.widget.ViewFlipper
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.asiasquare.byteg.shoppingdemo.R
 import com.asiasquare.byteg.shoppingdemo.databinding.FragmentCatalogBinding
+import java.util.*
+
 /**
 First fragment of the app.
 Display a list of catalog for user to choose.
@@ -18,7 +24,7 @@ class CatalogFragment : Fragment() {
     /** binding will only exist between onAttach and on Detach **/
     private var _binding : FragmentCatalogBinding? = null
     private val binding get() = _binding!!
-
+    var viewFlipper: ViewFlipper? = null
 
     /**
      * Create viewModel, provide application to Factory to create an AndroidViewModel class
@@ -66,7 +72,8 @@ class CatalogFragment : Fragment() {
 
         })
 
-
+        viewFlipper = binding.viewflipper
+        actionViewFlipper()
         return binding.root
     }
 
@@ -75,5 +82,22 @@ class CatalogFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun actionViewFlipper() {
+        val mangquangcao = ArrayList<Int>()
+        mangquangcao.add(R.drawable.banner05)
+        for (i in mangquangcao.indices) {
+            val imageView = ImageView(context)
+            imageView.scaleType = ImageView.ScaleType.FIT_XY
+            imageView.setImageResource(mangquangcao[i])
+            viewFlipper!!.addView(imageView)
+        }
+        viewFlipper!!.flipInterval = 10000
+        viewFlipper!!.isAutoStart = true
+        val animationSlideIn = AnimationUtils.loadAnimation(context, R.anim.slide_in_right)
+        val animationSlideOut = AnimationUtils.loadAnimation(context, R.anim.slide_out_right)
+        viewFlipper!!.inAnimation = animationSlideIn
+        viewFlipper!!.outAnimation = animationSlideOut
     }
 }

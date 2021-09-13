@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ItemDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(item : LocalItem)
 
@@ -26,10 +27,10 @@ interface ItemDao {
     @Query(value = "SELECT * FROM local_items_table")
     fun getAllItems() : LiveData<List<LocalItem>>
 
-    @Query(value = "SELECT * FROM local_items_table WHERE item_brand_id = :catalogId")
-    fun getAllItemsById(catalogId: Int) : LiveData<List<LocalItem>>
+//    @Query(value = "SELECT * FROM local_items_table WHERE item_brand_id = :catalogId")
+//    fun getAllItemsById(catalogId: Int) : LiveData<List<LocalItem>>
 
-    @Query("SELECT * FROM local_items_table WHERE item_name LIKE '%' || :searchQuery || '%' ORDER BY item_name DESC")
+    @Query("SELECT * FROM local_items_table WHERE item_name LIKE  '%' || :searchQuery || '%' ORDER BY item_name DESC")
     fun getSearchItems(searchQuery: String): Flow<List<LocalItem>>
 
     fun getTasks(catalogId: Int, searchQuery: String, sortOrder: SortOrder): Flow<List<LocalItem>> =
@@ -43,4 +44,5 @@ interface ItemDao {
 
     @Query("SELECT * FROM local_items_table WHERE item_brand_id = :catalogId AND item_name LIKE '%' || :searchQuery || '%' ORDER BY item_price")
     fun getItemsSortedByPrice(catalogId: Int, searchQuery: String): Flow<List<LocalItem>>
+
 }

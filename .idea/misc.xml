@@ -25,13 +25,16 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_cart.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_catalog.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_customer_list.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_customer_service_drawer.xml" value="0.11639492753623189" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_detail.xml" value="0.33" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_favorite.xml" value="0.18" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_item_list.xml" value="0.25" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_new_customer.xml" value="0.18" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_order.xml" value="0.2640449438202247" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_payment_method.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_payment_method_drawer.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_search.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/fragment_shipping_drawer.xml" value="0.11639492753623189" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/gird_view_cart_item.xml" value="0.33" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/grid_view_catalog_item.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/grid_view_favorite_item.xml" value="0.178125" />
@@ -40,9 +43,11 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/grid_view_payment_item_list.xml" value="0.10960144927536232" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/grid_view_search_item.xml" value="0.10960144927536232" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/list_item_customer.xml" value="0.10960144927536232" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/nav_header.xml" value="0.12907608695652173" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/layout/spinner_item_custom.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/menu/menu_action_search.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/github/ADemo/app/src/main/res/menu/navdrawer_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/AsiaShoppingSquareDemo-main/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/AsiaShoppingSquareDemo-main/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/github/AsiaShoppingSquareDemo-main/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,10 +14,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.asiasquare.byteg.shoppingdemo.R
 import com.asiasquare.byteg.shoppingdemo.database.items.FavoriteItem
 import com.asiasquare.byteg.shoppingdemo.databinding.FragmentFavoriteBinding
-import com.asiasquare.byteg.shoppingdemo.itemlist.ItemListFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collect
 
@@ -113,6 +112,8 @@ class FavoriteFragment : Fragment(), FavoriteFragmentAdapter.OnClickListener {
         viewModel.onDetailClick(favorite)
     }
 
+
+
     override fun onDeleteClick(favorite: FavoriteItem) {
         val dialogBuilder = AlertDialog.Builder(requireActivity())
 
@@ -136,6 +137,11 @@ class FavoriteFragment : Fragment(), FavoriteFragmentAdapter.OnClickListener {
         // show alert dialog
         alert.show()
 
+    }
+
+    override fun addToCard(favorite: FavoriteItem) {
+        viewModel.onCartClicking(favorite)
+        Toast.makeText(context, "Sản phẩm đã được thêm vào giỏ hàng", Toast.LENGTH_SHORT).show()
     }
 
 }

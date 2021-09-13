@@ -1,7 +1,9 @@
 package com.asiasquare.byteg.shoppingdemo.search
 
 import android.annotation.SuppressLint
+import android.graphics.Paint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -17,11 +19,25 @@ class SearchFragmentAdapter(private val onClickListener: OnClickListener) : List
         RecyclerView.ViewHolder(binding.root) {
 
         val btnFavorite= binding.imageViewAddFavorite
-        fun bind(search: LocalItem) {
+        @SuppressLint("SetTextI18n")
+        fun bind(item: LocalItem) {
+
+            val priceDiscounted = item.itemDiscountedPrice
+
             binding.apply {
-                anhsanpham.load(search.itemImageSource)
-                tensanpham.text = search.itemName
-                giasanpham.text = search.itemPrice.toString()
+                anhsanpham.load(item.itemImageSource)
+                tensanpham.text = item.itemName
+
+                if (priceDiscounted != 0.0) {
+                    giasanpham.text = "€" + item.itemPrice.toString()
+                    giasanpham.paintFlags = giasanpham.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    binding.tvDiscountedPrice.text = "€${item.itemDiscountedPrice}"
+                    binding.tvDiscountedPrice.visibility = View.VISIBLE
+                } else {
+                    binding.tvDiscountedPrice.visibility = View.INVISIBLE
+                    giasanpham.text = "€" + item.itemPrice.toString()
+                    giasanpham.paintFlags = giasanpham.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                }
             }
         }
 

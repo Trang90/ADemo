@@ -33,8 +33,10 @@
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#000000</color>
     <color name="colorAccent">#ffa751</color>
+    <color name="colorPrimaryDark">#ffa751</color>
 
 
+    <color name="colorFacebook_light">#4472c4</color>
     <color name="bgLogo">#f67122</color>
 
 </resources>

@@ -35,7 +35,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-light"
             android:paddingEnd="4dp"
-            tools:text="Banh Sisi Mix"
+            tools:text="Sisi Mix"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            tools:text="50.000"
+            tools:text="€1.5"
             android:textSize="24sp"
             android:textColor="#fa3223"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,8 +57,8 @@
 
         <ImageView
             android:id="@+id/iv_add_favorite"
-            android:layout_width="@dimen/heart_size"
-            android:layout_height="@dimen/heart_size"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
@@ -67,12 +67,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/giasanpham"
             app:layout_constraintVertical_bias="1.0"
-            android:src="@drawable/timden24" />
+            android:src="@drawable/add" />
 
 
-        <!--  //TODO SALE-->
         <TextView
-            android:id="@+id/giakhuyenmai"
+            android:id="@+id/tvDiscountedPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"

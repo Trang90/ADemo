@@ -1,6 +1,7 @@
 package com.asiasquare.byteg.shoppingdemo.detail
 
 import android.annotation.SuppressLint
+import android.graphics.Paint
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,7 @@ import coil.load
 import com.asiasquare.byteg.shoppingdemo.R
 import com.asiasquare.byteg.shoppingdemo.database.items.LocalItem
 import com.asiasquare.byteg.shoppingdemo.databinding.FragmentDetailBinding
+
 
 
 class DetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -44,6 +46,9 @@ class DetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val priceDiscounted = item.itemDiscountedPrice
+
         binding.apply {
             ivCatalogGrid.load(item.itemImageSource)
             tenSanPham.text = item.itemName
@@ -52,6 +57,17 @@ class DetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
             khoiLuongSanPham.text = "Khối lượng: "+item.itemWeight
             sanPhamThuongHieu.text ="Thương hiệu: "+item.itemBrand
             sanPhamXuatXu.text= "Xuấtxứ: "+item.itemOrigin
+
+            if (priceDiscounted != 0.0) {
+                giaSanPham.text = "€"+item.itemPrice.toString()
+                giaSanPham.paintFlags = giaSanPham.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                binding.tvDiscountedPrice.text= "€${item.itemDiscountedPrice}"
+                binding.tvDiscountedPrice.visibility = View.VISIBLE
+            } else {
+                binding.tvDiscountedPrice.visibility = View.INVISIBLE
+                giaSanPham.text= "€" + item.itemPrice.toString()
+                giaSanPham.paintFlags = giaSanPham.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            }
         }
 
         /** Create spinner button **/

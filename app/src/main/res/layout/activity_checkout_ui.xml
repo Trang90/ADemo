@@ -74,7 +74,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-black"
-        android:text="Total payment"
+        android:text="Tổng tiền thanh toán"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline" />
@@ -96,7 +96,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif"
-        android:text="Products"
+        android:text="Cộng tiền hàng"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_total_label" />
@@ -118,7 +118,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
-        android:text="@string/thong_tin_giao_hang"
+        android:text="Chi phí vận chuyển"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_subtotal_label" />
